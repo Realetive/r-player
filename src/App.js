@@ -27,6 +27,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import VideoPlayer from "./VideoPlayer";
+
 import './App.css';
 
 const data = {
@@ -53,6 +55,21 @@ const data = {
     }
   ]
 }
+
+const videoJsOptions = {
+  autoplay: true,
+  playbackRates: [0.5, 1, 1.25, 1.5, 2],
+  width: 720,
+  height: 300,
+  controls: true,
+  techOrder: ["youtube"],
+  sources: [
+    {
+      src: data.video,
+      type: 'video/youtube',
+    },
+  ],
+};
 
 function App() {
 
@@ -85,149 +102,143 @@ function App() {
 
   return (
     <div className="App">
-     <div className="player">
-      <div className="player__header">
-        <div className="player__logo"></div>
-        <div className="player__userpic"></div>
-        <div className="player__heading">
-          <div className="player__name">{ data.title }</div>
-          <div className="player__author">{ data.author }</div>
-        </div>
-        <div className="player__menu player__menu_direction_row">
-          {/* <div className="button player__button"><FontAwesomeIcon icon={faVk} className="button__icon" /></div> */}
-          {/* <div className="button player__button"><FontAwesomeIcon icon={faFacebook} className="button__icon" /></div> */}
-          {/* <div className="button player__button"><FontAwesomeIcon icon={faTwitter} className="button__icon" /></div> */}
-          <div className="button player__button"><FontAwesomeIcon icon={faShare} className="button__icon" /></div>
-          <div className="button player__button"><FontAwesomeIcon icon={faBookmark} className="button__icon" /></div>
-          <div className="button player__button"><FontAwesomeIcon icon={faCog} className="button__icon" /></div>
-        </div>
-      </div>
-      <div className="player__main">
-        <div className="player__side">
-          <div className="player__menu player__menu_direction_column">
-            <div className="button player__button"><FontAwesomeIcon icon={faInfo} className="button__icon" /></div>
-            <div className="button player__button"><FontAwesomeIcon icon={faListOl} className="button__icon" /></div>
-            <div className="button player__button"><FontAwesomeIcon icon={faClone} className="button__icon" /></div>
-            <div className="player__menu-area"></div>
-            <div className="button player__button"><FontAwesomeIcon icon={faFastBackward} className="button__icon" /></div>
-          </div>
-          <div className="player__side-main">
-            <div className="player__side-header">
-              <div className="player__menu player__menu_direction_row">
-                <div className="player__menu-area">
-                  <div className="button button_width_available player__button"><span className="button__text">Описание</span></div>
-                </div>
-                <div className="player__menu-area">
-                  <div className="button button_width_available player__button"><span className="button__text">Оглавление</span></div>
-                </div>
-              </div>
-            </div>
-            <div className="player__side-content">
-              <ul className="collapse">
-                { _renderChapter() }
-              </ul>
-            </div>
-            <div className="player__side-footer">
-              <div className="player__menu player__menu_direction_row">
-                <div className="button player__button"><FontAwesomeIcon icon={faStepBackward} className="button__icon" /></div>
-                <div className="player__menu-area">
-                  <div className="button button_width_available player__button"><FontAwesomeIcon icon={faPlay} className="button__icon" /></div>
-                </div>
-                <div className="button player__button"><FontAwesomeIcon icon={faStepForward} className="button__icon" /></div>
-                <div className="button player__button"><FontAwesomeIcon icon={faFastForward} className="button__icon" /></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="player__frame">
-          <div className="player__content">
-            <video
-              id="vid1"
-              className="video-js vjs-default-skin player__video"
-              controls
-              data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=8pbuqx_Th2Y"}] }'
-            >
-            </video>
+      <div className="player">
+        <div className="player__header">
+          <div className="player__logo"></div>
+          <div className="player__userpic"></div>
+          <div className="player__heading">
+            <div className="player__name">{ data.title }</div>
+            <div className="player__author">{ data.author }</div>
           </div>
           <div className="player__menu player__menu_direction_row">
-            <div className="button player__button"><FontAwesomeIcon icon={faVolumeUp} className="button__icon" /></div>
-            <div className="volume">
-              <input type="range"/>
-            </div>
-            <div className="timing">3:34 / 4:58</div>
-            <div className="button player__button"><FontAwesomeIcon icon={faClosedCaptioning} className="button__icon" /></div>
-            <div className="button player__button"><FontAwesomeIcon icon={faDesktop} className="button__icon" /></div>
+            {/* <div className="button player__button"><FontAwesomeIcon icon={faVk} className="button__icon" /></div> */}
+            {/* <div className="button player__button"><FontAwesomeIcon icon={faFacebook} className="button__icon" /></div> */}
+            {/* <div className="button player__button"><FontAwesomeIcon icon={faTwitter} className="button__icon" /></div> */}
+            <div className="button player__button"><FontAwesomeIcon icon={faShare} className="button__icon" /></div>
+            <div className="button player__button"><FontAwesomeIcon icon={faBookmark} className="button__icon" /></div>
+            <div className="button player__button"><FontAwesomeIcon icon={faCog} className="button__icon" /></div>
           </div>
         </div>
-        <div className="player__side">
-          <div className="player__side-main">
-            <div className="player__side-header">
-              <div className="player__menu player__menu_direction_row">
-                <div className="player__menu-area">
-                  <div className="button button_width_available player__button"><span className="button__text">Очередь</span></div>
-                </div>
-                <div className="player__menu-area">
-                  <div className="button button_width_available player__button"><span className="button__text">Похожие</span></div>
-                </div>
-              </div>
+        <div className="player__main">
+          <div className="player__side">
+            <div className="player__menu player__menu_direction_column">
+              <div className="button player__button"><FontAwesomeIcon icon={faInfo} className="button__icon" /></div>
+              <div className="button player__button"><FontAwesomeIcon icon={faListOl} className="button__icon" /></div>
+              <div className="button player__button"><FontAwesomeIcon icon={faClone} className="button__icon" /></div>
+              <div className="player__menu-area"></div>
+              <div className="button player__button"><FontAwesomeIcon icon={faFastBackward} className="button__icon" /></div>
             </div>
-            <div className="player__side-content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
-            </div>
-            <div className="player__side-footer">
-              <div className="player__menu player__menu_direction_row">
-                <div className="button player__button"><FontAwesomeIcon icon={faPaperclip} className="button__icon" /></div>
-                <div className="player__menu-area">
-                  <div className="input input_width_available">
-                    <div className="input__box">
-                      <textarea className="input__control"></textarea>
-                    </div>
+            <div className="player__side-main">
+              <div className="player__side-header">
+                <div className="player__menu player__menu_direction_row">
+                  <div className="player__menu-area">
+                    <div className="button button_width_available player__button"><span className="button__text">Описание</span></div>
+                  </div>
+                  <div className="player__menu-area">
+                    <div className="button button_width_available player__button"><span className="button__text">Оглавление</span></div>
                   </div>
                 </div>
-                <div className="button player__button"><FontAwesomeIcon icon={faHome} className="button__icon" /></div>
+              </div>
+              <div className="player__side-content">
+                <ul className="collapse">
+                  { _renderChapter() }
+                </ul>
+              </div>
+              <div className="player__side-footer">
+                <div className="player__menu player__menu_direction_row">
+                  <div className="button player__button"><FontAwesomeIcon icon={faStepBackward} className="button__icon" /></div>
+                  <div className="player__menu-area">
+                    <div className="button button_width_available player__button"><FontAwesomeIcon icon={faPlay} className="button__icon" /></div>
+                  </div>
+                  <div className="button player__button"><FontAwesomeIcon icon={faStepForward} className="button__icon" /></div>
+                  <div className="button player__button"><FontAwesomeIcon icon={faFastForward} className="button__icon" /></div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="player__menu player__menu_direction_column">
-            <div className="player__menu-area">
-              <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsUp} className="button__icon" /></div>
+          <div className="player__frame">
+            <div className="player__content">
+              <VideoPlayer { ...videoJsOptions } />
             </div>
-            <div className="player__menu-area">
-              <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsDown} className="button__icon" /></div>
+            <div className="player__menu player__menu_direction_row">
+              <div className="button player__button"><FontAwesomeIcon icon={faVolumeUp} className="button__icon" /></div>
+              <div className="volume">
+                <input type="range"/>
+              </div>
+              <div className="timing">3:34 / 4:58</div>
+              <div className="button player__button"><FontAwesomeIcon icon={faClosedCaptioning} className="button__icon" /></div>
+              <div className="button player__button"><FontAwesomeIcon icon={faDesktop} className="button__icon" /></div>
             </div>
-            <div className="button player__button"><FontAwesomeIcon icon={faComments} className="button__icon" /></div>
+          </div>
+          <div className="player__side">
+            <div className="player__side-main">
+              <div className="player__side-header">
+                <div className="player__menu player__menu_direction_row">
+                  <div className="player__menu-area">
+                    <div className="button button_width_available player__button"><span className="button__text">Очередь</span></div>
+                  </div>
+                  <div className="player__menu-area">
+                    <div className="button button_width_available player__button"><span className="button__text">Похожие</span></div>
+                  </div>
+                </div>
+              </div>
+              <div className="player__side-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
+              </div>
+              <div className="player__side-footer">
+                <div className="player__menu player__menu_direction_row">
+                  <div className="button player__button"><FontAwesomeIcon icon={faPaperclip} className="button__icon" /></div>
+                  <div className="player__menu-area">
+                    <div className="input input_width_available">
+                      <div className="input__box">
+                        <textarea className="input__control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="button player__button"><FontAwesomeIcon icon={faHome} className="button__icon" /></div>
+                </div>
+              </div>
+            </div>
+            <div className="player__menu player__menu_direction_column">
+              <div className="player__menu-area">
+                <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsUp} className="button__icon" /></div>
+              </div>
+              <div className="player__menu-area">
+                <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsDown} className="button__icon" /></div>
+              </div>
+              <div className="button player__button"><FontAwesomeIcon icon={faComments} className="button__icon" /></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="player__footer">
-        <div className="player__progress">
-          <input
-            className="player__current"
-            type="range"
-            min="0"
-            max="100"
-            value="33"
-            onChange={ () => {} }/>
-        </div>
-        <div className="player__ruler">
-          <div className="player__ruler-content">
-            <div className="player__ruler-chapter"></div>
-            <div className="player__ruler-chapter"></div>
-            <div className="player__ruler-chapter"></div>
-            <div className="player__ruler-chapter"></div>
-            <div className="player__ruler-chapter"></div>
+        <div className="player__footer">
+          <div className="player__progress">
+            <input
+              className="player__current"
+              type="range"
+              min="0"
+              max="100"
+              value="33"
+              onChange={ () => {} }/>
           </div>
-          <input
-            className="player__current"
-            type="range"
-            min="0"
-            max="100"
-            value="33"
-            onChange={ () => {} }/>
+          <div className="player__ruler">
+            <div className="player__ruler-content">
+              <div className="player__ruler-chapter"></div>
+              <div className="player__ruler-chapter"></div>
+              <div className="player__ruler-chapter"></div>
+              <div className="player__ruler-chapter"></div>
+              <div className="player__ruler-chapter"></div>
+            </div>
+            <input
+              className="player__current"
+              type="range"
+              min="0"
+              max="100"
+              value="33"
+              onChange={ () => {} }/>
+          </div>
         </div>
-      </div>
-    </div> 
+      </div> 
     </div>
   );
 }
