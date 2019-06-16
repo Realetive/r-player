@@ -3,6 +3,9 @@ import VideoPlayer from "./VideoPlayer";
 
 import './App.css';
 
+const urlParams = new URLSearchParams(window.location.search);
+const videoId = urlParams.get('id');
+
 const videoJsOptions = {
   data: {
     title: `Detroit: Become Human, Battlefield V, финишная прямая PlayStation 4`,
@@ -32,11 +35,11 @@ const videoJsOptions = {
   playbackRates: [0.5, 1, 1.25, 1.5, 2],
   width: 720,
   height: 300,
-  controls: true,
+  controls: false,
   techOrder: ["youtube"],
   sources: [
     {
-      src: `https://www.youtube.com/watch?v=8pbuqx_Th2Y`,
+      src: `https://www.youtube.com/watch?v=${ videoId || '8pbuqx_Th2Y' }`,
       type: 'video/youtube',
     },
   ],
