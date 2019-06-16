@@ -18,6 +18,7 @@ import {
   faFastBackward,
   faStepBackward,
   faPlay,
+  faPause,
   faStepForward,
   faFastForward,
   faVolumeUp,
@@ -32,11 +33,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class VideoPlayer extends Component {
+  state = {
+    play: false,
+  }
+
   componentDidMount() {
     // instantiate Video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      console.log('onPlayerReady', this)
+    this.player = videojs(this.videoNode, this.props, () => {
+      console.log('ready');
     });
+
+    this.player.on( this.player, ['play', 'pause'], event => {
+      this.setState( { play: !this.player.paused() } );
+    })
   }
 
   // destroy player on unmount
@@ -44,6 +53,10 @@ export default class VideoPlayer extends Component {
     if (this.player) {
       this.player.dispose()
     }
+  }
+
+  goTo = (time) => {
+    this.player.currentTime( time );
   }
 
   _renderChapter = () => {
@@ -66,22 +79,29 @@ export default class VideoPlayer extends Component {
           </div>
         </div>
         <div className="collapse__content" dangerouslySetInnerHTML={ getMarkdownText( chapter.content ) } />
+        <br />
         <div className="collapse__footer">
-          <div className="collapse__jump">
-            →
+          <div className="button button_width_available collapse__jump" style={{ border: '1px solid #000' }} onClick={ () => this.goTo( chapter.offset ) }>
+            <span className="button__text" style={{ color: '#000' }}>Перейти к разделу</span>
           </div>
         </div>
+        <br />
       </li>
     ) )
   }
 
+  playToggle = () => {
+    this.player && this.player.paused() ? this.player.play() : this.player.pause();
+  }
 
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render() {
     const { data } = this.props;
+    const { play } = this.state;
 
+    console.log('play',play);
     return (
       <div>    
         <div data-vjs-player>
@@ -131,7 +151,9 @@ export default class VideoPlayer extends Component {
                     <div className="player__menu player__menu_direction_row">
                       <div className="button player__button"><FontAwesomeIcon icon={faStepBackward} className="button__icon" /></div>
                       <div className="player__menu-area">
-                        <div className="button button_width_available player__button"><FontAwesomeIcon icon={faPlay} className="button__icon" /></div>
+                        <div className="button button_width_available player__button" onClick={ () => this.playToggle() }>
+                          <FontAwesomeIcon icon={ play ? faPause : faPlay } className="button__icon" />
+                        </div>
                       </div>
                       <div className="button player__button"><FontAwesomeIcon icon={faStepForward} className="button__icon" /></div>
                       <div className="button player__button"><FontAwesomeIcon icon={faFastForward} className="button__icon" /></div>
