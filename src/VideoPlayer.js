@@ -28,66 +28,69 @@ import {
   faHome,
   faThumbsUp,
   faThumbsDown,
-  faComments,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  faComments
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Blocks
+import { SideLeft } from './blocks/SideLeft';
 
 export default class VideoPlayer extends Component {
   state = {
     play: false,
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // instantiate Video.js
     this.player = videojs(this.videoNode, this.props, () => {
       console.log('ready');
     });
 
-    this.player.on( this.player, ['play', 'pause'], event => {
-      this.setState( { play: !this.player.paused() } );
-    })
+    this.player.on(this.player, ['play', 'pause'], (event) => {
+      this.setState({ play: !this.player.paused() });
+    });
   }
 
   // destroy player on unmount
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.player) {
-      this.player.dispose()
+      this.player.dispose();
     }
   }
 
   goTo = (time) => {
-    this.player.currentTime( time );
+    this.player.currentTime(time);
   }
 
   _renderChapter = () => {
     const { data } = this.props;
 
-    const getMarkdownText = ( text ) => {
-      const rawMarkup = marked( text, { sanitize: true, breaks: true } );
+    const getMarkdownText = (text) => {
+      const rawMarkup = marked(text, { sanitize: true, breaks: true });
 
       return { __html: rawMarkup };
-    }
+    };
 
-    return data.chapter.map( (chapter, index) => (
-      <li key={ index } className="collapse__chapter" data-time={ chapter.offset }>
-        <div className="collapse__header">
-          <div className="collapse__open">
-            <FontAwesomeIcon icon={faChevronDown} />
+    return data.chapter.map((chapter, index) => (
+      <li className = 'collapse__chapter' data-time = { chapter.offset } key = { index }>
+        <div className = 'collapse__header'>
+          <div className = 'collapse__open'>
+            <FontAwesomeIcon icon = { faChevronDown } />
           </div>
-          <div className="collapse__heading" data-time={ chapter.offset }>
+          <div className = 'collapse__heading' data-time = { chapter.offset }>
             { chapter.title }
           </div>
         </div>
-        <div className="collapse__content" dangerouslySetInnerHTML={ getMarkdownText( chapter.content ) } />
+        <div className = 'collapse__content' dangerouslySetInnerHTML = { getMarkdownText(chapter.content) } />
         <br />
-        <div className="collapse__footer">
-          <div className="button button_width_available collapse__jump" style={{ border: '1px solid #000' }} onClick={ () => this.goTo( chapter.offset ) }>
-            <span className="button__text" style={{ color: '#000' }}>Перейти к разделу</span>
+        <div className = 'collapse__footer'>
+          <div className = 'button button_width_available collapse__jump' style = { { border: '1px solid #000' } } onClick = { () => this.goTo(chapter.offset) }>
+            <span className = 'button__text' style = { { color: '#000' } }>Перейти к разделу</span>
           </div>
         </div>
         <br />
       </li>
-    ) )
+    ));
   }
 
   playToggle = () => {
@@ -97,155 +100,159 @@ export default class VideoPlayer extends Component {
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
-  render() {
+  render () {
     const { data } = this.props;
     const { play } = this.state;
 
-    console.log('play',play);
+    console.log('play', play);
+
     return (
-      <div>    
+      <div>
         <div data-vjs-player>
-          <div className="player">
-            <div className="player__header">
-              <div className="player__logo"></div>
-              <div className="player__userpic"></div>
-              <div className="player__heading">
-                <div className="player__name">{ data.title }</div>
-                <div className="player__author">{ data.author }</div>
+          <div className = 'player'>
+            <div className = 'player__header'>
+              <div className = 'player__logo' />
+              <div className = 'player__userpic' />
+              <div className = 'player__heading'>
+                <div className = 'player__name'>{ data.title }</div>
+                <div className = 'player__author'>{ data.author }</div>
               </div>
-              <div className="player__menu player__menu_direction_row">
+              <div className = 'player__menu player__menu_direction_row'>
                 {/* <div className="button player__button"><FontAwesomeIcon icon={faVk} className="button__icon" /></div> */}
                 {/* <div className="button player__button"><FontAwesomeIcon icon={faFacebook} className="button__icon" /></div> */}
                 {/* <div className="button player__button"><FontAwesomeIcon icon={faTwitter} className="button__icon" /></div> */}
-                <div className="button player__button"><FontAwesomeIcon icon={faShare} className="button__icon" /></div>
-                <div className="button player__button"><FontAwesomeIcon icon={faBookmark} className="button__icon" /></div>
-                <div className="button player__button"><FontAwesomeIcon icon={faCog} className="button__icon" /></div>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faShare } /></div>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faBookmark } /></div>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faCog } /></div>
               </div>
             </div>
-            <div className="player__main">
-              <div className="player__side">
-                <div className="player__menu player__menu_direction_column">
+            <div className = 'player__main'>
+              <div className = 'player__side'>
+                <SideLeft />
+                {/* <div className="player__menu player__menu_direction_column">
                   <div className="button player__button"><FontAwesomeIcon icon={faInfo} className="button__icon" /></div>
                   <div className="button player__button"><FontAwesomeIcon icon={faListOl} className="button__icon" /></div>
                   <div className="button player__button"><FontAwesomeIcon icon={faClone} className="button__icon" /></div>
                   <div className="player__menu-area"></div>
                   <div className="button player__button"><FontAwesomeIcon icon={faFastBackward} className="button__icon" /></div>
-                </div>
-                <div className="player__side-main">
-                  <div className="player__side-header">
-                    <div className="player__menu player__menu_direction_row">
-                      <div className="player__menu-area">
-                        <div className="button button_width_available player__button"><span className="button__text">Описание</span></div>
+                </div> */}
+                <div className = 'player__side-main'>
+                  <div className = 'player__side-header'>
+                    <div className = 'player__menu player__menu_direction_row'>
+                      <div className = 'player__menu-area'>
+                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Описание</span></div>
                       </div>
-                      <div className="player__menu-area">
-                        <div className="button button_width_available player__button"><span className="button__text">Оглавление</span></div>
+                      <div className = 'player__menu-area'>
+                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Оглавление</span></div>
                       </div>
                     </div>
                   </div>
-                  <div className="player__side-content">
-                    <ul className="collapse">
+                  <div className = 'player__side-content'>
+                    <ul className = 'collapse'>
                       { this._renderChapter() }
                     </ul>
                   </div>
-                  <div className="player__side-footer">
-                    <div className="player__menu player__menu_direction_row">
-                      <div className="button player__button"><FontAwesomeIcon icon={faStepBackward} className="button__icon" /></div>
-                      <div className="player__menu-area">
-                        <div className="button button_width_available player__button" onClick={ () => this.playToggle() }>
-                          <FontAwesomeIcon icon={ play ? faPause : faPlay } className="button__icon" />
+                  <div className = 'player__side-footer'>
+                    <div className = 'player__menu player__menu_direction_row'>
+                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faStepBackward } /></div>
+                      <div className = 'player__menu-area'>
+                        <div className = 'button button_width_available player__button' onClick = { () => this.playToggle() }>
+                          <FontAwesomeIcon className = 'button__icon' icon = { play ? faPause : faPlay } />
                         </div>
                       </div>
-                      <div className="button player__button"><FontAwesomeIcon icon={faStepForward} className="button__icon" /></div>
-                      <div className="button player__button"><FontAwesomeIcon icon={faFastForward} className="button__icon" /></div>
+                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faStepForward } /></div>
+                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faFastForward } /></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="player__frame">
-                <div className="player__content">
-                  <video ref={ node => this.videoNode = node } className="video-js vjs-default-skin player__video" />
+              <div className = 'player__frame'>
+                <div className = 'player__content'>
+                  <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } />
                 </div>
-                <div className="player__menu player__menu_direction_row">
-                  <div className="button player__button"><FontAwesomeIcon icon={faVolumeUp} className="button__icon" /></div>
-                  <div className="volume">
-                    <input type="range"/>
+                <div className = 'player__menu player__menu_direction_row'>
+                  <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
+                  <div className = 'volume'>
+                    <input type = 'range' />
                   </div>
-                  <div className="timing">3:34 / 4:58</div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faClosedCaptioning} className="button__icon" /></div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faDesktop} className="button__icon" /></div>
+                  <div className = 'timing'>3:34 / 4:58</div>
+                  <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
+                  <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
                 </div>
               </div>
-              <div className="player__side">
-                <div className="player__side-main">
-                  <div className="player__side-header">
-                    <div className="player__menu player__menu_direction_row">
-                      <div className="player__menu-area">
-                        <div className="button button_width_available player__button"><span className="button__text">Очередь</span></div>
+              <div className = 'player__side'>
+                <div className = 'player__side-main'>
+                  <div className = 'player__side-header'>
+                    <div className = 'player__menu player__menu_direction_row'>
+                      <div className = 'player__menu-area'>
+                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Очередь</span></div>
                       </div>
-                      <div className="player__menu-area">
-                        <div className="button button_width_available player__button"><span className="button__text">Похожие</span></div>
+                      <div className = 'player__menu-area'>
+                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Похожие</span></div>
                       </div>
                     </div>
                   </div>
-                  <div className="player__side-content">
+                  <div className = 'player__side-content'>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
                   </div>
-                  <div className="player__side-footer">
-                    <div className="player__menu player__menu_direction_row">
-                      <div className="button player__button"><FontAwesomeIcon icon={faPaperclip} className="button__icon" /></div>
-                      <div className="player__menu-area">
-                        <div className="input input_width_available">
-                          <div className="input__box">
-                            <textarea className="input__control"></textarea>
+                  <div className = 'player__side-footer'>
+                    <div className = 'player__menu player__menu_direction_row'>
+                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faPaperclip } /></div>
+                      <div className = 'player__menu-area'>
+                        <div className = 'input input_width_available'>
+                          <div className = 'input__box'>
+                            <textarea className = 'input__control' />
                           </div>
                         </div>
                       </div>
-                      <div className="button player__button"><FontAwesomeIcon icon={faHome} className="button__icon" /></div>
+                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faHome } /></div>
                     </div>
                   </div>
                 </div>
-                <div className="player__menu player__menu_direction_column">
-                  <div className="player__menu-area">
-                    <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsUp} className="button__icon" /></div>
+                <div className = 'player__menu player__menu_direction_column'>
+                  <div className = 'player__menu-area'>
+                    <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsUp } /></div>
                   </div>
-                  <div className="player__menu-area">
-                    <div className="button button_height_available player__button"><FontAwesomeIcon icon={faThumbsDown} className="button__icon" /></div>
+                  <div className = 'player__menu-area'>
+                    <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsDown } /></div>
                   </div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faComments} className="button__icon" /></div>
+                  <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faComments } /></div>
                 </div>
               </div>
             </div>
-            <div className="player__footer">
-              <div className="player__progress">
+            <div className = 'player__footer'>
+              <div className = 'player__progress'>
                 <input
-                  className="player__current"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="33"
-                  onChange={ () => {} }/>
+                  className = 'player__current'
+                  max = '100'
+                  min = '0'
+                  onChange = { () => {} }
+                  type = 'range'
+                  value = '33'
+                />
               </div>
-              <div className="player__ruler">
-                <div className="player__ruler-content">
-                  <div className="player__ruler-chapter"></div>
-                  <div className="player__ruler-chapter"></div>
-                  <div className="player__ruler-chapter"></div>
-                  <div className="player__ruler-chapter"></div>
-                  <div className="player__ruler-chapter"></div>
+              <div className = 'player__ruler'>
+                <div className = 'player__ruler-content'>
+                  <div className = 'player__ruler-chapter' />
+                  <div className = 'player__ruler-chapter' />
+                  <div className = 'player__ruler-chapter' />
+                  <div className = 'player__ruler-chapter' />
+                  <div className = 'player__ruler-chapter' />
                 </div>
                 <input
-                  className="player__current"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="33"
-                  onChange={ () => {} }/>
+                  className = 'player__current'
+                  max = '100'
+                  min = '0'
+                  onChange = { () => {} }
+                  type = 'range'
+                  value = '33'
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
