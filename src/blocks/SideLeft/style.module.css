@@ -1,8 +1,17 @@
 .test {
     color: #fff;
-    /* font-size: 28px; */
     --size: 28px;
 
 
     font-size: var(--size);
+    
+    transition: transform 1s;
+    box-sizing: border-box;
+    /* box-shadow: 0 10px #000; */
+    user-select: none;
+    background-color: hsl(120deg 100% 25%);
+  box-shadow: 0 0 0 10px hwb(120deg 100% 25% / 80%);
+  color: rgb(0 255 0);
+  background-image: conic-gradient(yellowgreen 40%, gold 0deg 75%, #f06 0deg);
+  font-family: system-ui;
 }

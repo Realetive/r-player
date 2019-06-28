@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import 'video.js/dist/video-js.min.css';
+// import 'video.js/dist/video-js.min.css';
+import 'video.js/dist/video-js.css';
 import videojs from 'video.js';
 import 'videojs-youtube';
 
