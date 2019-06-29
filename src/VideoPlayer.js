@@ -35,6 +35,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Blocks
 import { SideLeft } from './blocks/SideLeft';
+import { SideRight } from './blocks/SideRight';
 
 export default class VideoPlayer extends Component {
   state = {
@@ -130,6 +131,7 @@ export default class VideoPlayer extends Component {
             <div className = 'player__main'>
               <div className = 'player__side'>
                 <SideLeft />
+                {/* <SideRight data = { data } play = { play } /> */}
                 {/* <div className="player__menu player__menu_direction_column">
                   <div className="button player__button"><FontAwesomeIcon icon={faInfo} className="button__icon" /></div>
                   <div className="button player__button"><FontAwesomeIcon icon={faListOl} className="button__icon" /></div>
