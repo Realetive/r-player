@@ -1,5 +1,10 @@
+// Core
 import React from 'react';
+import StoreContext from 'storeon/react/context';
 import VideoPlayer from './VideoPlayer';
+
+// GlobalState
+import { store } from './init/store';
 
 import './App.css';
 
@@ -49,7 +54,9 @@ function App () {
 
   return (
     <div className = 'App'>
-      <VideoPlayer { ...videoJsOptions } />
+      <StoreContext.Provider value = { store }>
+        <VideoPlayer { ...videoJsOptions } />
+      </StoreContext.Provider>
     </div>
   );
 }

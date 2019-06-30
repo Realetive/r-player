@@ -15,7 +15,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Styles
-import styles from './style.module.css';
+// import styles from './style.module.css';
 
 export const SideLeft = (props) => {
   const { play } = props;
