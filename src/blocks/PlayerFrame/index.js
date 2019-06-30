@@ -13,11 +13,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+// Components
+import { VideoStream } from '../../components/VideoStream';
+
 // Styles
 // import styles from './style.module.css';
-
-
-
 
 class PlayerFrame extends Component {
 
@@ -35,22 +35,22 @@ class PlayerFrame extends Component {
   //       this.setState({ play: !this.player.paused() });
   //     });
   //   }
-  componentDidUpdate (prevProps) {
-    
-    if (prevProps.videoData !== this.props.videoData) {
-      this.player = videojs(this.videoNode, this.props.videoData, () => {
-        console.log('ready');
-      });
-      this.player.on(this.player, ['play', 'pause'], (event) => {
+  // componentDidUpdate (prevProps) {
 
-        this.setState({ play: !this.player.paused() });
-      });
+  //   if (prevProps.videoData !== this.props.videoData) {
+  //     this.player = videojs(this.videoNode, this.props.videoData, () => {
+  //       console.log('ready');
+  //     });
+  //     this.player.on(this.player, ['play', 'pause'], (event) => {
 
-      return true;
-    }
+  //       this.setState({ play: !this.player.paused() });
+  //     });
 
-    return false;
-  }
+  //     return true;
+  //   }
+
+  //   return false;
+  // }
 
   // componentWillUnmount () {
   //   if (this.player) {
@@ -62,12 +62,12 @@ class PlayerFrame extends Component {
   // }
   render () {
 
-
     return (
       <>
         <div className = 'player__frame'>
           <div className = 'player__content'>
-            <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } />
+            <VideoStream />
+            {/* <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } /> */}
           </div>
           <div className = 'player__menu player__menu_direction_row'>
             <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
