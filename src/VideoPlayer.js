@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
 import { PlayerFrame } from './blocks/PlayerFrame';
+import { Footer } from './blocks/Footer';
 
 class VideoPlayer extends Component {
   state = {
@@ -121,35 +122,7 @@ class VideoPlayer extends Component {
               <PlayerFrame />
               <SideRight />
             </div>
-            <div className = 'player__footer'>
-              <div className = 'player__progress'>
-                <input
-                  className = 'player__current'
-                  max = '100'
-                  min = '0'
-                  onChange = { () => {} }
-                  type = 'range'
-                  value = '33'
-                />
-              </div>
-              <div className = 'player__ruler'>
-                <div className = 'player__ruler-content'>
-                  <div className = 'player__ruler-chapter' />
-                  <div className = 'player__ruler-chapter' />
-                  <div className = 'player__ruler-chapter' />
-                  <div className = 'player__ruler-chapter' />
-                  <div className = 'player__ruler-chapter' />
-                </div>
-                <input
-                  className = 'player__current'
-                  max = '100'
-                  min = '0'
-                  onChange = { () => {} }
-                  type = 'range'
-                  value = '33'
-                />
-              </div>
-            </div>
+            <Footer />
           </div>
         </div>
       </div>
@@ -158,7 +131,6 @@ class VideoPlayer extends Component {
   }
 }
 export default connect('player1', VideoPlayer);
-
 
 // return (
 //   <div>
