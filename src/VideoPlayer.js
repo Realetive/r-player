@@ -129,16 +129,15 @@ export default class VideoPlayer extends Component {
               </div>
             </div>
             <div className = 'player__main'>
-              <div className = 'player__side'>
-                <SideLeft />
-                {/* <SideRight data = { data } play = { play } /> */}
-                {/* <div className="player__menu player__menu_direction_column">
-                  <div className="button player__button"><FontAwesomeIcon icon={faInfo} className="button__icon" /></div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faListOl} className="button__icon" /></div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faClone} className="button__icon" /></div>
-                  <div className="player__menu-area"></div>
-                  <div className="button player__button"><FontAwesomeIcon icon={faFastBackward} className="button__icon" /></div>
-                </div> */}
+              <SideLeft play = { play } />
+              {/* <div className = 'player__side'>
+                <div className ='player__menu player__menu_direction_column'>
+                  <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faInfo} /></div>
+                  <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faListOl} /></div>
+                  <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faClone} /></div>
+                  <div className= 'player__menu-area' />
+                  <div className= 'button player__button'><FontAwesomeIcon className="button__icon" icon={faFastBackward} /></div>
+                </div>
                 <div className = 'player__side-main'>
                   <div className = 'player__side-header'>
                     <div className = 'player__menu player__menu_direction_row'>
@@ -168,7 +167,7 @@ export default class VideoPlayer extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className = 'player__frame'>
                 <div className = 'player__content'>
                   <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } />
@@ -183,46 +182,7 @@ export default class VideoPlayer extends Component {
                   <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
                 </div>
               </div>
-              <div className = 'player__side'>
-                <div className = 'player__side-main'>
-                  <div className = 'player__side-header'>
-                    <div className = 'player__menu player__menu_direction_row'>
-                      <div className = 'player__menu-area'>
-                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Очередь</span></div>
-                      </div>
-                      <div className = 'player__menu-area'>
-                        <div className = 'button button_width_available player__button'><span className = 'button__text'>Похожие</span></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className = 'player__side-content'>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
-                  </div>
-                  <div className = 'player__side-footer'>
-                    <div className = 'player__menu player__menu_direction_row'>
-                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faPaperclip } /></div>
-                      <div className = 'player__menu-area'>
-                        <div className = 'input input_width_available'>
-                          <div className = 'input__box'>
-                            <textarea className = 'input__control' />
-                          </div>
-                        </div>
-                      </div>
-                      <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faHome } /></div>
-                    </div>
-                  </div>
-                </div>
-                <div className = 'player__menu player__menu_direction_column'>
-                  <div className = 'player__menu-area'>
-                    <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsUp } /></div>
-                  </div>
-                  <div className = 'player__menu-area'>
-                    <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsDown } /></div>
-                  </div>
-                  <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faComments } /></div>
-                </div>
-              </div>
+              <SideRight />
             </div>
             <div className = 'player__footer'>
               <div className = 'player__progress'>
