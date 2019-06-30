@@ -23,35 +23,16 @@ import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
 import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
+import { Header } from './blocks/Header';
 
 class VideoPlayer extends Component {
   state = {
     play: false,
   }
 
-  // componentDidMount () {
-  //   // instantiate Video.js
-  //   const player = videojs(this.videoNode, this.props, () => {
-  //     console.log('ready');
-  //     console.log(this.videoNode);
-  //   });
-  //   console.log('player', player)
-
-  //   player.on(player, ['play', 'pause'], (event) => {
-  //     this.setState({ play: !player.paused() });
-  //   });
+  // goTo = (time) => {
+  //   this.player.currentTime(time);
   // }
-
-  // // destroy player on unmount
-  // componentWillUnmount () {
-  //   if (this.player) {
-  //     this.player.dispose();
-  //   }
-  // }
-
-  goTo = (time) => {
-    this.player.currentTime(time);
-  }
 
   _renderChapter = () => {
     const { data } = this.props;
@@ -101,22 +82,7 @@ class VideoPlayer extends Component {
       <div>
         <div data-vjs-player>
           <div className = 'player'>
-            <div className = 'player__header'>
-              <div className = 'player__logo' />
-              <div className = 'player__userpic' />
-              <div className = 'player__heading'>
-                <div className = 'player__name'>{ data.title }</div>
-                <div className = 'player__author'>{ data.author }</div>
-              </div>
-              <div className = 'player__menu player__menu_direction_row'>
-                {/* <div className="button player__button"><FontAwesomeIcon icon={faVk} className="button__icon" /></div> */}
-                {/* <div className="button player__button"><FontAwesomeIcon icon={faFacebook} className="button__icon" /></div> */}
-                {/* <div className="button player__button"><FontAwesomeIcon icon={faTwitter} className="button__icon" /></div> */}
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faShare } /></div>
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faBookmark } /></div>
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faCog } /></div>
-              </div>
-            </div>
+            <Header data = { data } />
             <div className = 'player__main'>
               <SideLeft play = { play } />
               <PlayerFrame />
