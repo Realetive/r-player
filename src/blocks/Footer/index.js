@@ -17,7 +17,7 @@ export const Footer = () => {
             min = '0'
             // onChange = { () => {} }
             type = 'range'
-            value = '33'
+            // value = '33'
           />
         </div>
         <div className = 'player__ruler'>
@@ -32,9 +32,9 @@ export const Footer = () => {
             className = 'player__current'
             max = '100'
             min = '0'
-            onChange = { () => {} }
+            // onChange = { () => {} }
             type = 'range'
-            value = '33'
+            // value = '33'
           />
         </div>
       </div>

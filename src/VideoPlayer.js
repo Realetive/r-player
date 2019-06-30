@@ -4,31 +4,69 @@ import 'video.js/dist/video-js.css';
 // import videojs from 'video.js';
 import 'videojs-youtube';
 import connect from 'storeon/react/connect';
+// import useStoreon from 'storeon/react';
 
 import * as marked from 'marked';
-import {
-  faChevronDown,
-  // faVk,
-  // faFacebook,
-  // faTwitter,
-  faShare,
-  faBookmark,
-  faCog
-
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Blocks
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
-import { PlayerFrame } from './blocks/PlayerFrame';
+import PlayerFrame from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
 import { Header } from './blocks/Header';
 
+const urlParams = new URLSearchParams(window.location.search);
+const videoId = urlParams.get('id');
+
+const videoJsOptions = {
+  data: {
+    title:   'Detroit: Become Human, Battlefield V, финишная прямая PlayStation 4',
+    author:  'Dmitry Puchkov',
+    video:   'https://www.youtube.com/watch?v=8pbuqx_Th2Y',
+    chapter: [
+      {
+        offset:  21,
+        title:   'Потрачено на игры $823 000 000 God of War, Far Cry 5',
+        content: 'Персона npd.com\n' +
+                '\n' +
+                'Предмет [zxc](//google.com)\n' +
+                '\n' +
+                'Пруф-линк:\n' +
+                '\n' +
+                '- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)\n' +
+                '- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)',
+      },
+      {
+        offset:  235,
+        title:   'Финишная прямая PlayStation 4',
+        content: 'Пруф-линк: [playstation.com](https://www.playstation.com)',
+      }
+    ],
+  },
+  autoplay:      true,
+  playbackRates: [0.5, 1, 1.25, 1.5, 2],
+  width:         720,
+  height:        300,
+  controls:      false,
+  techOrder:     ['youtube'],
+  sources:       [
+    {
+      src:  `https://www.youtube.com/watch?v=${videoId || '8pbuqx_Th2Y'}`,
+      type: 'video/youtube',
+    }
+  ],
+};
+
 class VideoPlayer extends Component {
-  state = {
-    play: false,
+
+  componentDidMount () {
+    const { dispatch } = this.props;
+
+    dispatch('videoData/init', videoJsOptions);
   }
+
 
   // goTo = (time) => {
   //   this.player.currentTime(time);
@@ -73,16 +111,17 @@ class VideoPlayer extends Component {
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render () {
+    // if (JSON.stringify(this.props.videoData) === {}) {
+    //   return null;
+    // }
     const { data } = this.props;
-    const { play } = this.state;
-
-    console.log('play', play);
+    const { play } = this.props.player1;
 
     return (
       <div>
         <div data-vjs-player>
           <div className = 'player'>
-            <Header data = { data } />
+            <Header />
             <div className = 'player__main'>
               <SideLeft play = { play } />
               <PlayerFrame />
@@ -96,7 +135,7 @@ class VideoPlayer extends Component {
     );
   }
 }
-export default connect('player1', VideoPlayer);
+export default connect('player1', 'videoData', VideoPlayer);
 
 // return (
 //   <div>
