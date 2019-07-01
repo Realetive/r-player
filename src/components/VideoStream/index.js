@@ -1,24 +1,35 @@
 // Core
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useStoreon from 'storeon/react';
 
 import videojs from 'video.js';
-
 
 // Styles
 // import styles from './style.module.css';
 
 export const VideoStream = () => {
-  const { videoData } = useStoreon('videoData');
+  const { dispatch, videoData, playerEvent, player } = useStoreon('videoData', 'player');
+
+  const [play, setPlay] = useState(false);
 
   const videoNode = useRef();
 
   useEffect(() => {
     if (JSON.stringify(videoData) !=='{}') {
-      const player = videojs(videoNode.current, videoData, () => {
+      const playerInit = videojs(videoNode.current, videoData, () => {
+        dispatch('player/init', playerInit);
         console.log('ready');
       });
+
+      playerInit.on(playerInit, ['play', 'pause'], (event) => {
+        return dispatch('event/play', !playerInit.paused());
+      });
     }
+
+    // return () => {
+    //   videojs(videoNode.current).dispose();
+    // };
+    // return playerInit.dispose();
 
   }, [videoData]);
   // componentDidUpdate (prevProps) {

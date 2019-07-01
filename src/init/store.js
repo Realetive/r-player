@@ -1,12 +1,14 @@
 // Core
 import createStore from 'storeon';
 
-import player1 from './player1';
+import playerEvent from './playerEvent';
+import player from './player';
 import videoData from './videoData';
 
 export const store = createStore(
   [
-    player1,
+    playerEvent,
+    player,
     videoData,
     process.env.NODE_ENV !== 'production' && require('storeon/devtools')
   ]

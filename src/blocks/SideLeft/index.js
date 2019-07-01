@@ -1,5 +1,7 @@
 // Core
 import React from 'react';
+import useStoreon from 'storeon/react';
+
 import {
   faInfo,
   faListOl,
@@ -18,7 +20,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import styles from './style.module.css';
 
 export const SideLeft = (props) => {
-  const { play } = props;
+  const { dispatch, player, playerEvent } = useStoreon('playerEvent', 'player');
+  const { play } = playerEvent;
+
+  const _playToggle = () => {
+    player && player.paused() ? player.play() : player.pause();
+    console.log('test', player.paused());
+
+  };
 
   return (
     <>
@@ -52,7 +61,9 @@ export const SideLeft = (props) => {
                 <FontAwesomeIcon className = 'button__icon' icon = { faStepBackward } />
               </div>
               <div className = 'player__menu-area'>
-                <div className = 'button button_width_available player__button' onClick = { () => this.playToggle() }>
+                <div
+                  className = 'button button_width_available player__button'
+                  onClick = { _playToggle }>
                   <FontAwesomeIcon className = 'button__icon' icon = { play ? faPause : faPlay } />
                 </div>
               </div>

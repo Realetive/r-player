@@ -6,7 +6,4 @@ export default (store) => {
 
     return { videoData };
   });
-
- 
-
 };

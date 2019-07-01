@@ -67,7 +67,6 @@ class VideoPlayer extends Component {
     dispatch('videoData/init', videoJsOptions);
   }
 
-
   // goTo = (time) => {
   //   this.player.currentTime(time);
   // }
@@ -103,9 +102,6 @@ class VideoPlayer extends Component {
     ));
   }
 
-  playToggle = () => {
-    this.player && this.player.paused() ? this.player.play() : this.player.pause();
-  }
 
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
@@ -114,8 +110,7 @@ class VideoPlayer extends Component {
     // if (JSON.stringify(this.props.videoData) === {}) {
     //   return null;
     // }
-    const { data } = this.props;
-    const { play } = this.props.player1;
+
 
     return (
       <div>
@@ -123,7 +118,7 @@ class VideoPlayer extends Component {
           <div className = 'player'>
             <Header />
             <div className = 'player__main'>
-              <SideLeft play = { play } />
+              <SideLeft />
               <PlayerFrame />
               <SideRight />
             </div>
@@ -135,7 +130,7 @@ class VideoPlayer extends Component {
     );
   }
 }
-export default connect('player1', 'videoData', VideoPlayer);
+export default connect('playerEvent', 'videoData', VideoPlayer);
 
 // return (
 //   <div>
