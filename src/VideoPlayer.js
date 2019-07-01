@@ -107,11 +107,7 @@ class VideoPlayer extends Component {
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render () {
-    // if (JSON.stringify(this.props.videoData) === {}) {
-    //   return null;
-    // }
-
-
+    
     return (
       <div>
         <div data-vjs-player>

@@ -57,8 +57,7 @@ class PlayerFrame extends Component {
   //     this.player.dispose();
   //   }
   // }
-  // _test = () => {
-  //   console.log('this.props', this.props);
+  
   // }
   render () {
 
