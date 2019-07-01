@@ -19,8 +19,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Styles
 // import styles from './style.module.css';
 
-export const SideLeft = (props) => {
-  const { dispatch, player, playerEvent } = useStoreon('playerEvent', 'player');
+export const SideLeft = () => {
+  const { player, playerEvent } = useStoreon('playerEvent', 'player');
   const { play } = playerEvent;
 
   const _playToggle = () => {
