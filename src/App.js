@@ -15,19 +15,20 @@ const videoJsOptions = {
       {
         offset: 21,
         title: `Потрачено на игры $823 000 000 God of War, Far Cry 5`,
-        content: 'Персона npd.com\n' +
-                '\n' +
-                'Предмет [zxc](//google.com)\n' +
-                '\n' +
-                'Пруф-линк:\n' +
-                '\n' +
-                '- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)\n' +
-                '- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)'
+        content:
+          "Персона npd.com\n" +
+          "\n" +
+          "Предмет [zxc](//google.com)\n" +
+          "\n" +
+          "Пруф-линк:\n" +
+          "\n" +
+          "- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)\n" +
+          "- [far-cry.ubisoft.com](https://far-cry.ubisoft.com/game/ru-ru/home/)"
       },
       {
         offset: 235,
         title: `Финишная прямая PlayStation 4`,
-        content: 'Пруф-линк: [playstation.com](https://www.playstation.com)'
+        content: "Пруф-линк: [playstation.com](https://www.playstation.com)"
       }
     ]
   },
@@ -39,10 +40,17 @@ const videoJsOptions = {
   techOrder: ["youtube"],
   sources: [
     {
-      src: `https://www.youtube.com/watch?v=${ videoId || '8pbuqx_Th2Y' }`,
-      type: 'video/youtube',
-    },
+      src: `https://www.youtube.com/watch?v=${videoId || "8pbuqx_Th2Y"}`,
+      type: "video/youtube"
+    }
   ],
+  // youtube: {
+  //   modestbranding: 1,
+  //   showinfo: 0,
+  //   rel: 0,
+  //   iv_load_policy: 3,
+  //   autohide: 1
+  // }
 };
 
 function App() {

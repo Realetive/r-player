@@ -164,6 +164,7 @@ export default class VideoPlayer extends Component {
               <div className="player__frame">
                 <div className="player__content">
                   <video ref={ node => this.videoNode = node } className="video-js vjs-default-skin player__video" />
+                  {/* <div className="player__transparent" /> */}
                 </div>
                 <div className="player__menu player__menu_direction_row">
                   <div className="button player__button"><FontAwesomeIcon icon={faVolumeUp} className="button__icon" /></div>
