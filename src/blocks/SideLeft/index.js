@@ -25,6 +25,8 @@ export const SideLeft = () => {
 
   const _playToggle = () => {
     player && player.paused() ? player.play() : player.pause();
+
+    
     console.log('test', player.paused());
 
   };

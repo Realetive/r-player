@@ -1,11 +1,45 @@
 // Core
-import React from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import useStoreon from 'storeon/react';
 
 // Styles
 // import styles from './style.module.css';
 
 export const Footer = () => {
+  const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
+
+  const _progressBar = (event) => {
+
+    // dispatch('event/progress', player.currentTime());
+    // console.log(player.currentTime());
+    console.log(event.target.value);
+  };
+
+  let [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let test = null;
+
+    if (player) {
+    // dispatch('event/progress', player.currentTime());
+      // const test = () => {
+      //   progress + player.currentTime()
+      // }
+      // setInterval(console.log('progress', progress), 500);
+      test = setInterval(setProgress(progress = player.currentTime()), 500);
+    }
+
+    return () => {
+      clearInterval(test);
+    };
+  });
+
+  if (!player) {
+    return null;
+  }
+
+  // setInterval(console.log('update',player.currentTime()), 500);
+  console.log('progress', progress);
 
   return (
     <>
@@ -13,11 +47,11 @@ export const Footer = () => {
         <div className = 'player__progress'>
           <input
             className = 'player__current'
-            max = '100'
+            max = { `${player.duration()}` }
             min = '0'
-            // onChange = { () => {} }
             type = 'range'
-            // value = '33'
+            value = { `${progress}` }
+            onChange = { _progressBar }
           />
         </div>
         <div className = 'player__ruler'>
@@ -34,10 +68,11 @@ export const Footer = () => {
             min = '0'
             // onChange = { () => {} }
             type = 'range'
-            // value = '33'
+          // value = '33'
           />
         </div>
       </div>
     </>
   );
+
 };

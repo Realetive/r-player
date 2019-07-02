@@ -50,8 +50,20 @@ const videoJsOptions = {
   width:         720,
   height:        300,
   controls:      false,
-  techOrder:     ['youtube'],
-  sources:       [
+  controlBar:    {
+    children: [
+      'playToggle',
+      'volumeMenuButton',
+      'durationDisplay',
+      'timeDivider',
+      'currentTimeDisplay',
+      'progressControl',
+      'remainingTimeDisplay',
+      'fullscreenToggle'
+    ],
+  },
+  techOrder: ['youtube'],
+  sources:   [
     {
       src:  `https://www.youtube.com/watch?v=${videoId || '8pbuqx_Th2Y'}`,
       type: 'video/youtube',
@@ -102,12 +114,11 @@ class VideoPlayer extends Component {
     ));
   }
 
-
   // wrap the player in a div with a `data-vjs-player` attribute
   // so videojs won't create additional wrapper in the DOM
   // see https://github.com/videojs/video.js/pull/3856
   render () {
-    
+
     return (
       <div>
         <div data-vjs-player>

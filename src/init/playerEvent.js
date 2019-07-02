@@ -1,5 +1,6 @@
 const playerEvent = {
-  play: false,
+  play:     false,
+  progress: 0,
 };
 
 export default (store) => {
@@ -7,6 +8,12 @@ export default (store) => {
 
   store.on('event/play', (state, event) => {
     playerEvent.play = event;
+
+    return { playerEvent };
+  });
+
+  store.on('event/progress', (state, number) => {
+    playerEvent.progress = number;
 
     return { playerEvent };
   });

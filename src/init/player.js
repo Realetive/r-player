@@ -3,7 +3,7 @@
 // };
 
 export default (store) => {
-  store.on('@init', () => ({ player: {} }));
+  store.on('@init', () => ({ player: null }));
 
   store.on('player/init', (state, player) => {
     // player.play = true;
