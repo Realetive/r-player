@@ -11,7 +11,6 @@ export const VideoStream = () => {
   const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
 
   const videoNode = useRef();
-  const controlNode = useRef();
 
   useEffect(() => {
     let playerInit = null;
@@ -21,6 +20,7 @@ export const VideoStream = () => {
         dispatch('player/init', playerInit);
 
         console.log('ready', playerInit.duration());
+        console.log('node', videoNode.current.currentTime);
       });
 
       playerInit.on(playerInit, ['play', 'pause'], (event) => {
@@ -32,20 +32,18 @@ export const VideoStream = () => {
       
     }
 
-    return () => {
-      if (playerInit) {
-        playerInit.dispose();
-      }
-    };
+    // return () => {
+    //   if (playerInit) {
+    //     playerInit.dispose();
+    //   }
+    // };
 
   }, [videoData]);
 
   return JSON.stringify(videoData) ==='{}' ? null : (
     <>
       <video className = 'video-js vjs-default-skin player__video' ref = { videoNode } />
-      <div>test
-        <div ref = { controlNode } />
-      </div>
+      
     </>
   );
 };

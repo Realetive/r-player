@@ -1,6 +1,7 @@
 const playerEvent = {
   play:     false,
   progress: 0,
+  node:     null,
 };
 
 export default (store) => {
@@ -16,6 +17,11 @@ export default (store) => {
     playerEvent.progress = number;
 
     return { playerEvent };
+  });
+  store.on('event/node', (state, node) => {
+    // playerEvent.progress = number;
+
+    return { node };
   });
 
 };
