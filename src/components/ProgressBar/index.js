@@ -1,9 +1,10 @@
 // Core
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import useStoreon from 'storeon/react';
-export const ProgressBar = () => {
+export const ProgressBar = (props) => {
 
-  const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
+  const { dispatch, videoData, player, playerEvent } = useStoreon('player', 'playerEvent');
+  const { progress, duration } = props;
 
   const _progressBar = (event) => {
 
@@ -11,27 +12,33 @@ export const ProgressBar = () => {
     // console.log(player.currentTime());
   };
 
-  const [progress, setProgress] = useState(0);
+  const [prog, setProgress] = useState(0);
+  //   useEffect(() => {
+  //       return () => {
+  //           effect
+  //       };
+  //   }, [input])
+  const percent = player.currentTime() / player.duration() * 100;
+  const test = Math.round(percent * 10) / 10;
 
   useEffect(() => {
     // let test = null;
 
     if (player) {
-      // dispatch('event/progress', player.currentTime());
-      // const test = () => {
-      //   progress + player.currentTime()
-      // }
-      // setInterval(console.log('progress', progress), 500);
-      dispatch('event/progress', player.currentTime());
-      setProgress(player.currentTime());
 
+      //   console.log('percent', test);
+      //   setInterval(console.log('progress', progress), 500);
+      // dispatch('event/progress', test);
+      //   setProgress(test);
+      //   console.log('object', progress);
       // test = setInterval(setProgress(progress = player.currentTime()), 500);
+    //   dispatch('event/progress', test);
+
+      setProgress(test);
+
     }
 
-    // return () => {
-    //   clearInterval(test);
-    // };
-  });
+  }, [player.currentTime()]);
 
   if (!player) {
     return null;
@@ -41,10 +48,11 @@ export const ProgressBar = () => {
     <div className = 'player__progress'>
       <input
         className = 'player__current'
-        max = { `${player.duration()}` }
+        max = '100'
         min = '0'
+        step = '0.1'
         type = 'range'
-        value = { `${progress}` }
+        value = { `${prog}` }
         onChange = { _progressBar }
       />
     </div>

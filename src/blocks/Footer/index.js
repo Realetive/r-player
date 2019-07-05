@@ -50,7 +50,9 @@ export const Footer = () => {
   return (
     <>
       <div className = 'player__footer'>
-        <ProgressBar />
+      <div>test</div>
+        {/* <div dangerouslySetInnerHTML = { { __html: player.controlBar.progressControl.el().innerHTML } } /> */}
+        {/* <ProgressBar duration = { player.duration() } progress = { player.currentTime() } /> */}
         {/* <div className = 'player__progress'>
           <input
             className = 'player__current'
