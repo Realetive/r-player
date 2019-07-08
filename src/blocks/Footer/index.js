@@ -9,43 +9,15 @@ import { ProgressBar } from '../../components/ProgressBar';
 // import styles from './style.module.css';
 
 export const Footer = () => {
-  const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
+  // const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
 
-  // const _progressBar = (event) => {
 
-  //   // dispatch('event/progress', player.currentTime());
-  //   // console.log(player.currentTime());
-  //   console.log(event.target.value);
-  // };
 
-  // const [progress, setProgress] = useState(0);
+  // if (!player) {
+  //   return null;
+  // }
 
-  // useEffect(() => {
-  //   // let test = null;
-
-  //   if (player) {
-  //   // dispatch('event/progress', player.currentTime());
-  //     // const test = () => {
-  //     //   progress + player.currentTime()
-  //     // }
-  //     // setInterval(console.log('progress', progress), 500);
-  //     dispatch('event/progress', player.currentTime());
-  //     setProgress(player.currentTime());
-
-  //     // test = setInterval(setProgress(progress = player.currentTime()), 500);
-  //   }
-
-  //   // return () => {
-  //   //   clearInterval(test);
-  //   // };
-  // });
-
-  if (!player) {
-    return null;
-  }
-
-  // setInterval(console.log('update',player.currentTime()), 500);
-  // console.log('progress', progress);
+  
 
   return (
     <>

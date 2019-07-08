@@ -20,7 +20,27 @@ import { VideoStream } from '../../components/VideoStream';
 class PlayerFrame extends Component {
 
   state = {
-    play: false,
+    played: 0,
+    url:    null,
+  }
+
+  // componentDidMount () {
+  //   if (this.props.videoData === null) {
+  //     return null;
+  //   }
+  //   const { data } = this.props.videoData;
+
+  //   this.load(data.video);
+  // }
+
+  load = (url) => {
+    this.setState({
+      played: 0,
+      url,
+    });
+  }
+  _onProgress = (state) => {
+    console.log('test', state);
   }
 
   render () {
@@ -44,6 +64,7 @@ class PlayerFrame extends Component {
               playing = { play }
               url = { data.video }
               width = { width }
+              onProgress = { this._onProgress }
             />
             {/* <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } /> */}
           </div>

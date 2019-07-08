@@ -5,40 +5,28 @@ export const ProgressBar = (props) => {
 
   const { dispatch, videoData, player, playerEvent } = useStoreon('player', 'playerEvent');
 
-  const progressNode = useRef(null);
+  const _onSeekChange = (e) => {
 
-  if (!player) {
-    return null;
+    dispatch('event/progress', parseFloat(e.target.value));
+  };
+  const _test =() => {
+    console.log('object')
   }
 
-  const progressBar = player.controlBar.progressControl.el().innerHTML;
-  const progressBar2 = player.controlBar.progressControl.createEl();
-  const progressBar3 = player.controlBar.progressControl.contentEl();
-  const progressBar4 = player.controlBar.progressControl.contentEl();
-
-  console.log('createEl', progressBar2);
-  console.log('contentEl', progressBar3);
-  player.controlBar.progressControl.contentEl(progressNode);
-
   return (
-    <div className = { 'video-js' }>
-      <div
-        dangerouslySetInnerHTML = { { __html: progressBar3.innerHTML } }
-        ref = { progressNode }
+    <div className = 'player__progress'>
+      <input
+        className = 'player__current'
+        max = '100'
+        min = '0'
+        step = '0.1'
+        type = 'range'
+        value = { playerEvent.progress }
+        onChange = { _onSeekChange }
       />
+      <button onClick={_test}>Test</button>
     </div>
 
   );
 
 };
-// <div className = 'player__progress'>
-//   <input
-//     className = 'player__current'
-//     max = '100'
-//     min = '0'
-//     step = '0.1'
-//     type = 'range'
-//     value = { `${prog}` }
-//     onChange = { _progressBar }
-//   />
-// </div>
