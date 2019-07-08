@@ -20,14 +20,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import styles from './style.module.css';
 
 export const SideLeft = () => {
-  const { player, playerEvent } = useStoreon('playerEvent', 'player');
+  const { dispatch, player, playerEvent } = useStoreon('playerEvent', 'player');
   const { play } = playerEvent;
 
   const _playToggle = () => {
-    player && player.paused() ? player.play() : player.pause();
+    // player && player.paused() ? player.play() : player.pause();
+    dispatch('event/play', !play);
 
-    
-    console.log('test', player.paused());
+    // console.log('test', player.paused());
 
   };
 

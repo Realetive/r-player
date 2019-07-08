@@ -30,13 +30,18 @@ class PlayerFrame extends Component {
     }
 
     const { data, width, height } = this.props.videoData;
+    const { play } = this.props.playerEvent;
 
     return (
       <>
         <div className = 'player__frame'>
           <div className = 'player__content'>
             <ReactPlayer
+              config = { { youtube: {
+                playerVars: { controls: 0 },
+              } } }
               height = { height }
+              playing = { play }
               url = { data.video }
               width = { width }
             />
@@ -57,4 +62,4 @@ class PlayerFrame extends Component {
   }
 
 }
-export default connect('videoData', PlayerFrame);
+export default connect('videoData', 'playerEvent', PlayerFrame);
