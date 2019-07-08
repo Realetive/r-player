@@ -1,8 +1,6 @@
 // Core
 import React, { Component, useState, useEffect } from 'react';
-import videojs from 'video.js';
-import 'videojs-youtube';
-import 'video.js/dist/video-js.css';
+import ReactPlayer from 'react-player';
 import connect from 'storeon/react/connect';
 
 import {
@@ -24,48 +22,24 @@ class PlayerFrame extends Component {
   state = {
     play: false,
   }
-  //   componentDidMount () {
-  //     // instantiate Video.js
-  // console.log('object')
-  //     this.player = videojs(this.videoNode, this.props.videoData, () => {
-  //       console.log('ready');
-  //     });
-  //     this.player.on(this.player, ['play', 'pause'], (event) => {
 
-  //       this.setState({ play: !this.player.paused() });
-  //     });
-  //   }
-  // componentDidUpdate (prevProps) {
-
-  //   if (prevProps.videoData !== this.props.videoData) {
-  //     this.player = videojs(this.videoNode, this.props.videoData, () => {
-  //       console.log('ready');
-  //     });
-  //     this.player.on(this.player, ['play', 'pause'], (event) => {
-
-  //       this.setState({ play: !this.player.paused() });
-  //     });
-
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
-
-  // componentWillUnmount () {
-  //   if (this.player) {
-  //     this.player.dispose();
-  //   }
-  // }
-  
-  // }
   render () {
+
+    if (this.props.videoData === null) {
+      return null;
+    }
+
+    const { data, width, height } = this.props.videoData;
 
     return (
       <>
         <div className = 'player__frame'>
           <div className = 'player__content'>
-            <VideoStream />
+            <ReactPlayer
+              height = { height }
+              url = { data.video }
+              width = { width }
+            />
             {/* <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } /> */}
           </div>
           <div className = 'player__menu player__menu_direction_row'>

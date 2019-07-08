@@ -47,8 +47,8 @@ const videoJsOptions = {
   },
   autoplay:        true,
   playbackRates:   [0.5, 1, 1.25, 1.5, 2],
-  width:           720,
-  height:          300,
+  width:           '100%',
+  height:          '100%',
   controls:        false,
   ProgressControl: true,
   // SeekBar:         true,
@@ -141,115 +141,3 @@ class VideoPlayer extends Component {
 }
 export default connect('playerEvent', 'videoData', VideoPlayer);
 
-// return (
-//   <div>
-//     <div data-vjs-player>
-//       <div className = 'player'>
-//         <div className = 'player__header'>
-//           <div className = 'player__logo' />
-//           <div className = 'player__userpic' />
-//           <div className = 'player__heading'>
-//             <div className = 'player__name'>{ data.title }</div>
-//             <div className = 'player__author'>{ data.author }</div>
-//           </div>
-//           <div className = 'player__menu player__menu_direction_row'>
-//             {/* <div className="button player__button"><FontAwesomeIcon icon={faVk} className="button__icon" /></div> */}
-//             {/* <div className="button player__button"><FontAwesomeIcon icon={faFacebook} className="button__icon" /></div> */}
-//             {/* <div className="button player__button"><FontAwesomeIcon icon={faTwitter} className="button__icon" /></div> */}
-//             <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faShare } /></div>
-//             <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faBookmark } /></div>
-//             <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faCog } /></div>
-//           </div>
-//         </div>
-//         <div className = 'player__main'>
-//           <SideLeft play = { play } />
-//           {/* <div className = 'player__side'>
-//             <div className ='player__menu player__menu_direction_column'>
-//               <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faInfo} /></div>
-//               <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faListOl} /></div>
-//               <div className ='button player__button'><FontAwesomeIcon className="button__icon" icon={faClone} /></div>
-//               <div className= 'player__menu-area' />
-//               <div className= 'button player__button'><FontAwesomeIcon className="button__icon" icon={faFastBackward} /></div>
-//             </div>
-//             <div className = 'player__side-main'>
-//               <div className = 'player__side-header'>
-//                 <div className = 'player__menu player__menu_direction_row'>
-//                   <div className = 'player__menu-area'>
-//                     <div className = 'button button_width_available player__button'><span className = 'button__text'>Описание</span></div>
-//                   </div>
-//                   <div className = 'player__menu-area'>
-//                     <div className = 'button button_width_available player__button'><span className = 'button__text'>Оглавление</span></div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className = 'player__side-content'>
-//                 <ul className = 'collapse'>
-//                   { this._renderChapter() }
-//                 </ul>
-//               </div>
-//               <div className = 'player__side-footer'>
-//                 <div className = 'player__menu player__menu_direction_row'>
-//                   <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faStepBackward } /></div>
-//                   <div className = 'player__menu-area'>
-//                     <div className = 'button button_width_available player__button' onClick = { () => this.playToggle() }>
-//                       <FontAwesomeIcon className = 'button__icon' icon = { play ? faPause : faPlay } />
-//                     </div>
-//                   </div>
-//                   <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faStepForward } /></div>
-//                   <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faFastForward } /></div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div> */}
-//           <PlayerFrame />
-//           {/* <div className = 'player__frame'>
-//             <div className = 'player__content'>
-//               <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } />
-//             </div>
-//             <div className = 'player__menu player__menu_direction_row'>
-//               <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
-//               <div className = 'volume'>
-//                 <input type = 'range' />
-//               </div>
-//               <div className = 'timing'>3:34 / 4:58</div>
-//               <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
-//               <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
-//             </div>
-//           </div> */}
-//           <SideRight />
-//         </div>
-//         <div className = 'player__footer'>
-//           <div className = 'player__progress'>
-//             <input
-//               className = 'player__current'
-//               max = '100'
-//               min = '0'
-//               onChange = { () => {} }
-//               type = 'range'
-//               value = '33'
-//             />
-//           </div>
-//           <div className = 'player__ruler'>
-//             <div className = 'player__ruler-content'>
-//               <div className = 'player__ruler-chapter' />
-//               <div className = 'player__ruler-chapter' />
-//               <div className = 'player__ruler-chapter' />
-//               <div className = 'player__ruler-chapter' />
-//               <div className = 'player__ruler-chapter' />
-//             </div>
-//             <input
-//               className = 'player__current'
-//               max = '100'
-//               min = '0'
-//               onChange = { () => {} }
-//               type = 'range'
-//               value = '33'
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//     {/* <Test /> */}
-//   </div>
-
-// );

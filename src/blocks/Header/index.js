@@ -18,7 +18,10 @@ export const Header = () => {
 
   useEffect(() => {
 
-    _setData(videoData.data);
+    if (videoData) {
+
+      _setData(videoData.data);
+    }
 
   }, [videoData]);
 
