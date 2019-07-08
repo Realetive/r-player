@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useStoreon from 'storeon/react';
 
 import videojs from 'video.js';
@@ -11,17 +11,30 @@ export const VideoStream = () => {
   const { dispatch, videoData, player, playerEvent } = useStoreon('videoData', 'player', 'playerEvent');
 
   const videoNode = useRef();
-  const progressNode = useRef();
+  const buttonNode = useRef(null);
 
   useEffect(() => {
     let playerInit = null;
 
     if (JSON.stringify(videoData) !=='{}') {
       playerInit = videojs(videoNode.current, videoData, () => {
+
+        // videojs.registerComponent('Control', videojs.extends('Component'));
+        // const Component = videojs.getComponent('Component');
+
+        // const button = new Component(playerInit);
+        const button2 = videojs.getComponent('Button');
+        videojs.registerComponent('button2', button2);
+        playerInit.addChild('button2');
+        // button(playerInit, buttonNode.current);
+        console.log('button', button2);
+
+        // button.on(['play', 'pause'], (event) => {
+        //   console.log('test')
+        // })
+
         dispatch('player/init', playerInit);
 
-        // console.log('ready', playerInit.duration());
-        // console.log('node', videoNode.current.currentTime);
       });
 
       playerInit.on(playerInit, ['play', 'pause'], (event) => {
@@ -29,10 +42,6 @@ export const VideoStream = () => {
 
         return dispatch('event/play', !playerInit.paused());
       });
-
-      const progressControl = playerInit.controlBar.progressControl.contentEl();
-
-      console.log('progressControl', progressControl.innerHTML);
 
     }
 
@@ -51,15 +60,15 @@ export const VideoStream = () => {
   return JSON.stringify(videoData) ==='{}' ? null : (
     <>
       <video className = 'video-js vjs-default-skin player__video' ref = { videoNode } />
-      { player ?
+      <div rev = { buttonNode } />
+      {/* { player ?
             <div dangerouslySetInnerHTML = { { __html: player.controlBar.progressControl.el().innerHTML } } /> : null}
-      
-      
+
       <div ref = { progressNode }>test
         <div>
-          
+
         </div>
-      </div>
+      </div> */}
 
     </>
   );

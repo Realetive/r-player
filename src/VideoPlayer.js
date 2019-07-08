@@ -49,9 +49,9 @@ const videoJsOptions = {
   playbackRates:   [0.5, 1, 1.25, 1.5, 2],
   width:           720,
   height:          300,
-  controls:        true,
+  controls:        false,
   ProgressControl: true,
-  SeekBar:         true,
+  // SeekBar:         true,
   controlBar:      {
     children: [
       'playToggle',

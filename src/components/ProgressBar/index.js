@@ -4,58 +4,41 @@ import useStoreon from 'storeon/react';
 export const ProgressBar = (props) => {
 
   const { dispatch, videoData, player, playerEvent } = useStoreon('player', 'playerEvent');
-  const { progress, duration } = props;
 
-  const _progressBar = (event) => {
-
-    // dispatch('event/progress', player.currentTime());
-    // console.log(player.currentTime());
-  };
-
-  const [prog, setProgress] = useState(0);
-  //   useEffect(() => {
-  //       return () => {
-  //           effect
-  //       };
-  //   }, [input])
-  const percent = player.currentTime() / player.duration() * 100;
-  const test = Math.round(percent * 10) / 10;
-
-  useEffect(() => {
-    // let test = null;
-
-    if (player) {
-
-      //   console.log('percent', test);
-      //   setInterval(console.log('progress', progress), 500);
-      // dispatch('event/progress', test);
-      //   setProgress(test);
-      //   console.log('object', progress);
-      // test = setInterval(setProgress(progress = player.currentTime()), 500);
-    //   dispatch('event/progress', test);
-
-      setProgress(test);
-
-    }
-
-  }, [player.currentTime()]);
+  const progressNode = useRef(null);
 
   if (!player) {
     return null;
   }
 
+  const progressBar = player.controlBar.progressControl.el().innerHTML;
+  const progressBar2 = player.controlBar.progressControl.createEl();
+  const progressBar3 = player.controlBar.progressControl.contentEl();
+  const progressBar4 = player.controlBar.progressControl.contentEl();
+
+  console.log('createEl', progressBar2);
+  console.log('contentEl', progressBar3);
+  player.controlBar.progressControl.contentEl(progressNode);
+
   return (
-    <div className = 'player__progress'>
-      <input
-        className = 'player__current'
-        max = '100'
-        min = '0'
-        step = '0.1'
-        type = 'range'
-        value = { `${prog}` }
-        onChange = { _progressBar }
+    <div className = { 'video-js' }>
+      <div
+        dangerouslySetInnerHTML = { { __html: progressBar3.innerHTML } }
+        ref = { progressNode }
       />
     </div>
+
   );
 
 };
+// <div className = 'player__progress'>
+//   <input
+//     className = 'player__current'
+//     max = '100'
+//     min = '0'
+//     step = '0.1'
+//     type = 'range'
+//     value = { `${prog}` }
+//     onChange = { _progressBar }
+//   />
+// </div>
