@@ -19,7 +19,5 @@ export default (store) => {
 
     return { playerEvent };
   });
-  
-  
 
 };

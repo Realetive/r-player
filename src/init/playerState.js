@@ -10,11 +10,9 @@ export default (store) => {
 
     return { playerState };
   });
-  store.on('playerState/played', (state, played) => {
-    const { playerState } = store.get();
+  store.on('playerState/played', ({ playerState }, played) => {
 
     playerState.played = played;
-    console.log('playerState',playerState);
 
     return { playerState };
   });

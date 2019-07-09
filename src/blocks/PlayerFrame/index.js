@@ -1,7 +1,8 @@
 // Core
 import React, { Component, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
-import connect from 'storeon/react/connect';
+// import connect from 'storeon/react/connect';
+import useStoreon from 'storeon/react';
 
 import {
   faVolumeUp,
@@ -11,88 +12,66 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// Components
-import { VideoStream } from '../../components/VideoStream';
+export const PlayerFrame = () => {
 
-// Styles
-// import styles from './style.module.css';
+  const { dispatch, videoData, playerEvent } = useStoreon('videoData', 'playerEvent', 'playerState', 'playerNode');
+  const { play } = playerEvent;
 
-class PlayerFrame extends Component {
+  const [player, _setPlayer] = useState(null);
 
-  state = {
-    played: 0,
-    url:    null,
-  }
-
-  // componentDidMount () {
-  //   console.log('this.player', this.player)
-  //   // this.ref();
-  // }
-
-  load = (url) => {
-    this.setState({
-      played: 0,
-      url,
-    });
-  }
-  _onProgress = (updateState) => {
-    if (!this.props.playerEvent.seeking) {
-
-      this.props.dispatch('playerState/update', updateState);
-      // console.log('test', updateState);
-
-    }
-  }
-  ref = (player) => {
-    this.props.dispatch('playerNode/init', player);
-
-    // this.player = player;
-    // console.log('ref', player);
-  }
-  _test =() => {
-    console.log('object', this.player);
+  const ref = (data) => {
+    _setPlayer(data);
   };
 
-  render () {
+  useEffect(() => {
+    dispatch('playerNode/init', player);
+  }, [player]);
 
-    if (this.props.videoData === null) {
-      return null;
+  const _onProgress = (updateState) => {
+    if (!playerEvent.seeking) {
+
+      dispatch('playerState/update', updateState);
     }
+  };
 
-    const { data, width, height } = this.props.videoData;
-    const { play } = this.props.playerEvent;
+  const _test = () => {
+    console.log('object');
+  };
 
-    return (
-      <>
-        <div className = 'player__frame'>
-          <div className = 'player__content'>
-            <button onClick = { this._test }>Test</button>
-            <ReactPlayer
-              config = { { youtube: {
-                playerVars: { controls: 0 },
-              } } }
-              height = { height }
-              playing = { play }
-              ref = { this.ref }
-              url = { data.video }
-              width = { width }
-              onProgress = { this._onProgress }
-            />
-            {/* <video className = 'video-js vjs-default-skin player__video' ref = { (node) => this.videoNode = node } /> */}
-          </div>
-          <div className = 'player__menu player__menu_direction_row'>
-            <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
-            <div className = 'volume'>
-              <input type = 'range' />
-            </div>
-            <div className = 'timing'>3:34 / 4:58</div>
-            <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
-            <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
-          </div>
-        </div>
-      </>
-    );
+  if (videoData === null) {
+    return null;
   }
 
-}
-export default connect('videoData', 'playerEvent', 'playerNode', 'playerState', PlayerFrame);
+  const { data, width, height } = videoData;
+
+  return (
+    <>
+      <div className = 'player__frame'>
+        <div className = 'player__content'>
+          <button onClick = { _test }>Test</button>
+          <ReactPlayer
+            config = { { youtube: {
+              playerVars: { controls: 0 },
+            } } }
+            height = { height }
+            playing = { play }
+            ref = { ref }
+            url = { data.video }
+            width = { width }
+            onProgress = { _onProgress }
+          />
+
+        </div>
+        <div className = 'player__menu player__menu_direction_row'>
+          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
+          <div className = 'volume'>
+            <input type = 'range' />
+          </div>
+          <div className = 'timing'>3:34 / 4:58</div>
+          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
+          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
+        </div>
+      </div>
+    </>
+  );
+};

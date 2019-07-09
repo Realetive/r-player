@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Blocks
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
-import PlayerFrame from './blocks/PlayerFrame';
+import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
 import { Header } from './blocks/Header';
 
@@ -140,4 +140,3 @@ class VideoPlayer extends Component {
   }
 }
 export default connect('playerEvent', 'videoData', VideoPlayer);
-
