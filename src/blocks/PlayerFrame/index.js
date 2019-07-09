@@ -25,12 +25,8 @@ class PlayerFrame extends Component {
   }
 
   // componentDidMount () {
-  //   if (this.props.videoData === null) {
-  //     return null;
-  //   }
-  //   const { data } = this.props.videoData;
-
-  //   this.load(data.video);
+  //   console.log('this.player', this.player)
+  //   // this.ref();
   // }
 
   load = (url) => {
@@ -39,9 +35,23 @@ class PlayerFrame extends Component {
       url,
     });
   }
-  _onProgress = (state) => {
-    console.log('test', state);
+  _onProgress = (updateState) => {
+    if (!this.props.playerEvent.seeking) {
+
+      this.props.dispatch('playerState/update', updateState);
+      // console.log('test', updateState);
+
+    }
   }
+  ref = (player) => {
+    this.props.dispatch('playerNode/init', player);
+
+    // this.player = player;
+    // console.log('ref', player);
+  }
+  _test =() => {
+    console.log('object', this.player);
+  };
 
   render () {
 
@@ -56,12 +66,14 @@ class PlayerFrame extends Component {
       <>
         <div className = 'player__frame'>
           <div className = 'player__content'>
+            <button onClick = { this._test }>Test</button>
             <ReactPlayer
               config = { { youtube: {
                 playerVars: { controls: 0 },
               } } }
               height = { height }
               playing = { play }
+              ref = { this.ref }
               url = { data.video }
               width = { width }
               onProgress = { this._onProgress }
@@ -83,4 +95,4 @@ class PlayerFrame extends Component {
   }
 
 }
-export default connect('videoData', 'playerEvent', PlayerFrame);
+export default connect('videoData', 'playerEvent', 'playerNode', 'playerState', PlayerFrame);
