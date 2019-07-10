@@ -1,7 +1,6 @@
 // Core
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
-// import connect from 'storeon/react/connect';
 import useStoreon from 'storeon/react';
 
 import {
@@ -24,11 +23,15 @@ export const PlayerFrame = () => {
   };
 
   useEffect(() => {
-    dispatch('playerNode/init', player);
+    if (player) {
+
+      dispatch('playerNode/init', player);
+    }
   }, [player]);
 
   const _onProgress = (updateState) => {
     if (!playerEvent.seeking) {
+      console.log(updateState)
 
       dispatch('playerState/update', updateState);
     }

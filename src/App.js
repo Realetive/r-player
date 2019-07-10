@@ -1,7 +1,7 @@
 // Core
 import React from 'react';
 import StoreContext from 'storeon/react/context';
-import VideoPlayer from './VideoPlayer';
+import { VideoPlayer } from './VideoPlayer';
 
 // GlobalState
 import { store } from './init/store';

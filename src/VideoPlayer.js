@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-// import 'video.js/dist/video-js.min.css';
-import 'video.js/dist/video-js.css';
-// import videojs from 'video.js';
-import 'videojs-youtube';
-import connect from 'storeon/react/connect';
-// import useStoreon from 'storeon/react';
+import React, { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player';
+// import connect from 'storeon/react/connect';
+import useStoreon from 'storeon/react';
 
 import * as marked from 'marked';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronDown,
+  faVolumeUp,
+  faClosedCaptioning,
+  faDesktop
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Blocks
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
-import { PlayerFrame } from './blocks/PlayerFrame';
+// import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
 import { Header } from './blocks/Header';
 
@@ -51,7 +53,6 @@ const videoJsOptions = {
   height:          '100%',
   controls:        false,
   ProgressControl: true,
-  // SeekBar:         true,
   controlBar:      {
     children: [
       'playToggle',
@@ -73,19 +74,45 @@ const videoJsOptions = {
   ],
 };
 
-class VideoPlayer extends Component {
+export const VideoPlayer = () => {
 
-  componentDidMount () {
-    const { dispatch } = this.props;
+  const { dispatch, videoData, playerEvent } = useStoreon('videoData', 'playerEvent', 'playerState', 'playerNode');
+  const { play } = playerEvent;
 
+  const [player, _setPlayer] = useState(null);
+
+  const ref = (data) => {
+    _setPlayer(data);
+  };
+
+  useEffect(() => {
     dispatch('videoData/init', videoJsOptions);
-  }
+
+  }, [dispatch, videoData]);
+
+  useEffect(() => {
+    // if (player) {
+
+    //   dispatch('playerNode/init', player);
+    // }
+  }, [dispatch, player]);
+  const _seekTo = (progress) => {
+    player.seekTo(progress);
+  };
+
+  const _onProgress = (updateState) => {
+    if (!playerEvent.seeking) {
+      console.log(updateState);
+
+      dispatch('playerState/update', updateState);
+    }
+  };
 
   // goTo = (time) => {
   //   this.player.currentTime(time);
   // }
 
-  _renderChapter = () => {
+  const _renderChapter = () => {
     const { data } = this.props;
 
     const getMarkdownText = (text) => {
@@ -114,29 +141,54 @@ class VideoPlayer extends Component {
         <br />
       </li>
     ));
+  };
+
+  if (videoData === null) {
+    return null;
   }
 
-  // wrap the player in a div with a `data-vjs-player` attribute
-  // so videojs won't create additional wrapper in the DOM
-  // see https://github.com/videojs/video.js/pull/3856
-  render () {
+  const { data, width, height } = videoData;
 
-    return (
-      <div>
-        <div data-vjs-player>
-          <div className = 'player'>
-            <Header />
-            <div className = 'player__main'>
-              <SideLeft />
-              <PlayerFrame />
-              <SideRight />
+  return (
+    <div>
+      <div data-vjs-player>
+        <div className = 'player'>
+          <Header />
+          <div className = 'player__main'>
+            <SideLeft />
+            {/* <PlayerFrame /> */}
+            <div className = 'player__frame'>
+              <div className = 'player__content'>
+                <ReactPlayer
+                  config = { { youtube: {
+                    playerVars: { controls: 0 },
+                  } } }
+                  height = { height }
+                  playing = { play }
+                  ref = { ref }
+                  url = { data.video }
+                  width = { width }
+                  onProgress = { _onProgress }
+                />
+
+              </div>
+              <div className = 'player__menu player__menu_direction_row'>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
+                <div className = 'volume'>
+                  <input type = 'range' />
+                </div>
+                <div className = 'timing'>3:34 / 4:58</div>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
+                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
+              </div>
             </div>
-            <Footer />
+            <SideRight />
           </div>
+          <Footer _seekTo = { _seekTo } />
         </div>
       </div>
+    </div>
 
-    );
-  }
-}
-export default connect('playerEvent', 'videoData', VideoPlayer);
+  );
+
+};

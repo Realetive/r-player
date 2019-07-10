@@ -20,7 +20,7 @@ export const ProgressBar = (props) => {
 
   const onSeekMouseUp = (e) => {
     dispatch('event/seeking', false);
-    playerNode.seekTo(parseFloat(e.target.value));
+    props._seekTo(parseFloat(e.target.value));
   };
 
 
