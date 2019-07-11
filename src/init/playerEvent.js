@@ -4,6 +4,7 @@ const playerEvent = {
   progress: 0,
   node:     null,
   seeking:  false,
+  muted:    false,
 };
 
 export default (store) => {
@@ -19,10 +20,14 @@ export default (store) => {
 
     return { playerEvent };
   });
+  store.on('event/muted', (state, event) => {
+    playerEvent.muted = event;
+
+    return { playerEvent };
+  });
   store.on('event/seeking', (state, event) => {
     playerEvent.seeking = event;
 
     return { playerEvent };
   });
-
 };
