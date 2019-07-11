@@ -140,7 +140,7 @@ export const VideoPlayer = () => {
                   onProgress = { _onProgress }
                 />
               </div>
-              <PlayerFrame />
+              <PlayerFrame player = { player } />
             </div>
             <SideRight />
           </div>
