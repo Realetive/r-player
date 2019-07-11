@@ -3,15 +3,6 @@ import ReactPlayer from 'react-player';
 
 import useStoreon from 'storeon/react';
 
-import * as marked from 'marked';
-import {
-  faChevronDown,
-  faVolumeUp,
-  faClosedCaptioning,
-  faDesktop
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 // Blocks
 import { Header } from './blocks/Header';
 import { SideLeft } from './blocks/SideLeft';
