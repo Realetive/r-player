@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
-// import connect from 'storeon/react/connect';
+
 import useStoreon from 'storeon/react';
 
 import * as marked from 'marked';
@@ -13,11 +13,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Blocks
+import { Header } from './blocks/Header';
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
-// import { PlayerFrame } from './blocks/PlayerFrame';
+import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
-import { Header } from './blocks/Header';
 
 const urlParams = new URLSearchParams(window.location.search);
 const videoId = urlParams.get('id');
@@ -77,7 +77,7 @@ const videoJsOptions = {
 export const VideoPlayer = () => {
 
   const { dispatch, videoData, playerEvent } = useStoreon('videoData', 'playerEvent', 'playerState', 'playerNode');
-  const { play } = playerEvent;
+  const { play, volume } = playerEvent;
 
   const [player, _setPlayer] = useState(null);
 
@@ -90,12 +90,6 @@ export const VideoPlayer = () => {
 
   }, [dispatch, videoData]);
 
-  useEffect(() => {
-    // if (player) {
-
-    //   dispatch('playerNode/init', player);
-    // }
-  }, [dispatch, player]);
   const _seekTo = (progress) => {
     player.seekTo(progress);
   };
@@ -156,7 +150,6 @@ export const VideoPlayer = () => {
           <Header />
           <div className = 'player__main'>
             <SideLeft />
-            {/* <PlayerFrame /> */}
             <div className = 'player__frame'>
               <div className = 'player__content'>
                 <ReactPlayer
@@ -167,20 +160,12 @@ export const VideoPlayer = () => {
                   playing = { play }
                   ref = { ref }
                   url = { data.video }
+                  volume = { volume }
                   width = { width }
                   onProgress = { _onProgress }
                 />
-
               </div>
-              <div className = 'player__menu player__menu_direction_row'>
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
-                <div className = 'volume'>
-                  <input type = 'range' />
-                </div>
-                <div className = 'timing'>3:34 / 4:58</div>
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
-                <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
-              </div>
+              <PlayerFrame />
             </div>
             <SideRight />
           </div>

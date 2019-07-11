@@ -1,6 +1,5 @@
 // Core
 import React, { useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
 import useStoreon from 'storeon/react';
 
 import {
@@ -14,66 +13,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const PlayerFrame = () => {
 
   const { dispatch, videoData, playerEvent } = useStoreon('videoData', 'playerEvent', 'playerState', 'playerNode');
-  const { play } = playerEvent;
-
-  const [player, _setPlayer] = useState(null);
-
-  const ref = (data) => {
-    _setPlayer(data);
+  const { play, volume } = playerEvent;
+  
+  const _setVolume = (e) => {
+    dispatch('event/volume', parseFloat(e.target.value));
   };
 
-  useEffect(() => {
-    if (player) {
-
-      dispatch('playerNode/init', player);
-    }
-  }, [player]);
-
-  const _onProgress = (updateState) => {
-    if (!playerEvent.seeking) {
-      console.log(updateState)
-
-      dispatch('playerState/update', updateState);
-    }
-  };
-
-  const _test = () => {
-    console.log('object');
-  };
-
-  if (videoData === null) {
-    return null;
-  }
-
-  const { data, width, height } = videoData;
+  // if (videoData === null) {
+  //   return null;
+  // }
 
   return (
     <>
-      <div className = 'player__frame'>
-        <div className = 'player__content'>
-          <button onClick = { _test }>Test</button>
-          <ReactPlayer
-            config = { { youtube: {
-              playerVars: { controls: 0 },
-            } } }
-            height = { height }
-            playing = { play }
-            ref = { ref }
-            url = { data.video }
-            width = { width }
-            onProgress = { _onProgress }
+      <div className = 'player__menu player__menu_direction_row'>
+        <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
+        <div className = 'volume'>
+          <input
+            max = { 1 }
+            min = { 0 }
+            step = 'any'
+            type = 'range'
+            value = { volume }
+            onChange = { _setVolume }
           />
-
         </div>
-        <div className = 'player__menu player__menu_direction_row'>
-          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faVolumeUp } /></div>
-          <div className = 'volume'>
-            <input type = 'range' />
-          </div>
-          <div className = 'timing'>3:34 / 4:58</div>
-          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
-          <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
-        </div>
+        <div className = 'timing'>3:34 / 4:58</div>
+        <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } /></div>
+        <div className = 'button player__button'><FontAwesomeIcon className = 'button__icon' icon = { faDesktop } /></div>
       </div>
     </>
   );
