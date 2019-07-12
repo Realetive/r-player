@@ -6,6 +6,7 @@ import useStoreon from 'storeon/react';
 import { ControlBar } from '../../components/ControlBar';
 import { VolumeBar } from '../../components/VolumeBar';
 import { ScreenBar } from '../../components/ScreenBar';
+import { UserBar } from '../../components/UserBar';
 import { ProgressBar } from '../../components/ProgressBar';
 
 // Styles
@@ -21,6 +22,7 @@ export const Controls = (props) => {
           <ControlBar />
           <VolumeBar />
           <ScreenBar player = { player } />
+          <UserBar />
         </div>
 
         <ProgressBar player = { player } />

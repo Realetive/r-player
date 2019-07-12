@@ -104,7 +104,7 @@ textarea {
   display: inline-block;
   font-size: 16px;
   line-height: inherit;
-  padding: 15px 16px;
+  /* padding: 15px 16px; */
   box-sizing: border-box;
 }
 

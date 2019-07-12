@@ -6,13 +6,7 @@ import * as marked from 'marked';
 import {
   faInfo,
   faListOl,
-  faClone,
-  faFastBackward,
-  faPause,
-  faPlay,
-  faStepForward,
-  faStepBackward,
-  faFastForward,
+  faClone, 
   faChevronDown
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,10 +22,6 @@ export const SideLeft = () => {
   );
   // const { play } = playerEvent;
   const { data } = videoData;
-
-  // const _playToggle = () => {
-  //   dispatch('event/play', !play);
-  // };
 
   const _renderChapter = () => {
     // const { data } = this.props;
@@ -86,9 +76,7 @@ export const SideLeft = () => {
             <FontAwesomeIcon className = 'button__icon' icon = { faClone } />
           </div>
           <div className = 'player__menu-area' />
-          {/* <div className = 'button player__button'>
-            <FontAwesomeIcon className = 'button__icon' icon = { faFastBackward } />
-          </div> */}
+          
         </div>
         <div className = 'player__side-main'>
           <div className = 'player__side-header'>
@@ -108,38 +96,7 @@ export const SideLeft = () => {
           <div className = 'player__side-content'>
             <ul className = 'collapse'>{_renderChapter()}</ul>
           </div>
-          {/* <div className = 'player__side-footer'>
-            <div className = 'player__menu player__menu_direction_row'>
-              <div className = 'button player__button'>
-                <FontAwesomeIcon
-                  className = 'button__icon'
-                  icon = { faStepBackward }
-                />
-              </div>
-              <div className = 'player__menu-area'>
-                <div
-                  className = 'button button_width_available player__button'
-                  onClick = { _playToggle }>
-                  <FontAwesomeIcon
-                    className = 'button__icon'
-                    icon = { play ? faPause : faPlay }
-                  />
-                </div>
-              </div>
-              <div className = 'button player__button'>
-                <FontAwesomeIcon
-                  className = 'button__icon'
-                  icon = { faStepForward }
-                />
-              </div>
-              <div className = 'button player__button'>
-                <FontAwesomeIcon
-                  className = 'button__icon'
-                  icon = { faFastForward }
-                />
-              </div>
-            </div>
-          </div> */}
+          
         </div>
       </div>
     </>

@@ -11,7 +11,7 @@ import { format } from '../../instruments/helpers';
 // Styles
 import Styles from './style.module.css';
 
-export const VolumeBar = (props) => {
+export const VolumeBar = () => {
   const { dispatch, playerEvent, playerState } = useStoreon(
     'playerEvent',
     'playerState',

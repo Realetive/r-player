@@ -2,13 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useStoreon from 'storeon/react';
 
-// Components
-import { ProgressBar } from '../../components/ProgressBar';
 
 // Styles
 // import styles from './style.module.css';
 
-export const Footer = (props) => {
+export const Footer = () => {
 
   return (
     <>
