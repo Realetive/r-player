@@ -12,16 +12,18 @@ import { ProgressBar } from '../../components/ProgressBar';
 import Styles from './style.module.css';
 
 export const Controls = (props) => {
+  const { player } = props;
+
   return (
     <>
       <div className = { Styles.controls }>
         <div className = { Styles.controlsDashBoard }>
           <ControlBar />
           <VolumeBar />
-          <ScreenBar player = { props.player } />
+          <ScreenBar player = { player } />
         </div>
 
-        <ProgressBar _seekTo = { props._seekTo } />
+        <ProgressBar player = { player } />
       </div>
     </>
   );

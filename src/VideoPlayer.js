@@ -7,7 +7,6 @@ import useStoreon from 'storeon/react';
 import { Header } from './blocks/Header';
 import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
-import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
 import { Controls } from './blocks/Controls';
 
@@ -87,10 +86,6 @@ export const VideoPlayer = () => {
     dispatch('videoData/init', videoJsOptions);
   }, [dispatch, videoData]);
 
-  const _seekTo = (progress) => {
-    player.seekTo(progress);
-  };
-
   const _onProgress = (updateState) => {
     if (!playerEvent.seeking) {
       dispatch('playerState/update', updateState);
@@ -98,10 +93,7 @@ export const VideoPlayer = () => {
   };
 
   const _onDuration = (duration) => {
-    console.log('onDuration', duration);
     dispatch('event/duration', duration);
-
-    // this.setState({ duration });
   };
   // goTo = (time) => {
   //   this.player.currentTime(time);
@@ -139,15 +131,11 @@ export const VideoPlayer = () => {
                   onProgress = { _onProgress }
                 />
               </div>
-              {/* <PlayerFrame player = { player } /> */}
             </div>
             <SideRight />
           </div>
-          <Controls
-            _seekTo = { _seekTo }
-            player = { player }
-          />
-          <Footer _seekTo = { _seekTo } />
+          <Controls player = { player } />
+          <Footer />
         </div>
       </div>
     </div>

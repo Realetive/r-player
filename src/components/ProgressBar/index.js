@@ -12,6 +12,7 @@ export const ProgressBar = (props) => {
     'playerState',
     'playerNode'
   );
+  const { player } = props;
 
   const _onSeekChange = (e) => {
     dispatch('playerState/played', parseFloat(e.target.value));
@@ -23,7 +24,7 @@ export const ProgressBar = (props) => {
 
   const onSeekMouseUp = (e) => {
     dispatch('event/seeking', false);
-    props._seekTo(parseFloat(e.target.value));
+    player.seekTo(parseFloat(e.target.value));
   };
 
   return (
