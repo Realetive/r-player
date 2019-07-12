@@ -5,6 +5,7 @@ const playerEvent = {
   node:     null,
   seeking:  false,
   muted:    false,
+  duration: 0,
 };
 
 export default (store) => {
@@ -22,6 +23,11 @@ export default (store) => {
   });
   store.on('event/muted', (state, event) => {
     playerEvent.muted = event;
+
+    return { playerEvent };
+  });
+  store.on('event/duration', (state, duration) => {
+    playerEvent.duration = duration;
 
     return { playerEvent };
   });

@@ -10,16 +10,21 @@ import {
   faClosedCaptioning,
   faDesktop
 } from '@fortawesome/free-solid-svg-icons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+// Instruments
+import { format } from '../../instruments/helpers';
+
 export const PlayerFrame = (props) => {
-  const { dispatch, videoData, playerEvent } = useStoreon(
+  const { dispatch, videoData, playerEvent, playerState } = useStoreon(
     'videoData',
     'playerEvent',
     'playerState',
     'playerNode'
   );
-  const { play, volume, muted } = playerEvent;
+  const { volume, muted, duration } = playerEvent;
+  const { played } = playerState;
   const { player } = props;
 
   const _setVolume = (e) => {
@@ -36,6 +41,7 @@ export const PlayerFrame = (props) => {
   // if (videoData === null) {
   //   return null;
   // }
+  console.log('duration', format(duration));
 
   return (
     <>
@@ -56,7 +62,7 @@ export const PlayerFrame = (props) => {
             onChange = { _setVolume }
           />
         </div>
-        <div className = 'timing'>3:34 / 4:58</div>
+        <div className = 'timing'>{`${format(duration * played)} / ${format(duration)}`}</div>
         <div className = 'button player__button'>
           <FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } />
         </div>

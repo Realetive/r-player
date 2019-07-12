@@ -96,6 +96,12 @@ export const VideoPlayer = () => {
     }
   };
 
+  const _onDuration = (duration) => {
+    console.log('onDuration', duration);
+    dispatch('event/duration', duration);
+
+    // this.setState({ duration });
+  };
   // goTo = (time) => {
   //   this.player.currentTime(time);
   // }
@@ -128,6 +134,7 @@ export const VideoPlayer = () => {
                   url = { data.video }
                   volume = { volume }
                   width = { width }
+                  onDuration = { _onDuration }
                   onProgress = { _onProgress }
                 />
               </div>
