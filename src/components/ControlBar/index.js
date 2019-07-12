@@ -12,12 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+// Styles
+import Styles from './style.module.css';
+
 export const ControlBar = (props) => {
-  const { dispatch, player, playerEvent, videoData } = useStoreon(
-    'playerEvent',
-    'player',
-    'videoData'
-  );
+  const { dispatch, playerEvent } = useStoreon('playerEvent');
 
   const { play } = playerEvent;
 
@@ -27,7 +26,7 @@ export const ControlBar = (props) => {
 
   return (
     <>
-      <div className = 'player__side-footer'>
+      <div className = { Styles.controlBar }>
         <div className = 'player__menu player__menu_direction_row'>
           <div className = 'button player__button'>
             <FontAwesomeIcon className = 'button__icon' icon = { faFastBackward } />

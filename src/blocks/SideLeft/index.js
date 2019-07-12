@@ -26,12 +26,12 @@ export const SideLeft = () => {
     'player',
     'videoData'
   );
-  const { play } = playerEvent;
+  // const { play } = playerEvent;
   const { data } = videoData;
 
-  const _playToggle = () => {
-    dispatch('event/play', !play);
-  };
+  // const _playToggle = () => {
+  //   dispatch('event/play', !play);
+  // };
 
   const _renderChapter = () => {
     // const { data } = this.props;
