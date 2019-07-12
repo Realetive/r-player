@@ -9,6 +9,7 @@ import { SideLeft } from './blocks/SideLeft';
 import { SideRight } from './blocks/SideRight';
 import { PlayerFrame } from './blocks/PlayerFrame';
 import { Footer } from './blocks/Footer';
+import { Controls } from './blocks/Controls';
 
 const urlParams = new URLSearchParams(window.location.search);
 const videoId = urlParams.get('id');
@@ -142,6 +143,7 @@ export const VideoPlayer = () => {
             </div>
             <SideRight />
           </div>
+          <Controls  _seekTo = { _seekTo }/>
           <Footer _seekTo = { _seekTo } />
         </div>
       </div>

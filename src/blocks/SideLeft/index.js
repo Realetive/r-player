@@ -86,9 +86,9 @@ export const SideLeft = () => {
             <FontAwesomeIcon className = 'button__icon' icon = { faClone } />
           </div>
           <div className = 'player__menu-area' />
-          <div className = 'button player__button'>
+          {/* <div className = 'button player__button'>
             <FontAwesomeIcon className = 'button__icon' icon = { faFastBackward } />
-          </div>
+          </div> */}
         </div>
         <div className = 'player__side-main'>
           <div className = 'player__side-header'>
@@ -108,7 +108,7 @@ export const SideLeft = () => {
           <div className = 'player__side-content'>
             <ul className = 'collapse'>{_renderChapter()}</ul>
           </div>
-          <div className = 'player__side-footer'>
+          {/* <div className = 'player__side-footer'>
             <div className = 'player__menu player__menu_direction_row'>
               <div className = 'button player__button'>
                 <FontAwesomeIcon
@@ -139,7 +139,7 @@ export const SideLeft = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
