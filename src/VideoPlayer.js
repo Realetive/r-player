@@ -139,11 +139,14 @@ export const VideoPlayer = () => {
                   onProgress = { _onProgress }
                 />
               </div>
-              <PlayerFrame player = { player } />
+              {/* <PlayerFrame player = { player } /> */}
             </div>
             <SideRight />
           </div>
-          <Controls  _seekTo = { _seekTo }/>
+          <Controls
+            _seekTo = { _seekTo }
+            player = { player }
+          />
           <Footer _seekTo = { _seekTo } />
         </div>
       </div>

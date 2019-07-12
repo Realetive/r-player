@@ -14,7 +14,6 @@ export const Footer = (props) => {
     <>
       <div className = 'player__footer'>
 
-        <ProgressBar _seekTo = { props._seekTo } />
 
         <div className = 'player__ruler'>
           <div className = 'player__ruler-content'>

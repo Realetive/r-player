@@ -27,13 +27,13 @@ export const PlayerFrame = (props) => {
   const { played } = playerState;
   const { player } = props;
 
-  const _setVolume = (e) => {
-    dispatch('event/volume', parseFloat(e.target.value));
-  };
+  // const _setVolume = (e) => {
+  //   dispatch('event/volume', parseFloat(e.target.value));
+  // };
 
-  const _toggleMuted = () => {
-    dispatch('event/muted', !muted);
-  };
+  // const _toggleMuted = () => {
+  //   dispatch('event/muted', !muted);
+  // };
   const _onClickFullscreen = () => {
     screenfull.request(findDOMNode(player));
   };
@@ -63,12 +63,12 @@ export const PlayerFrame = (props) => {
           />
         </div>
         <div className = 'timing'>{`${format(duration * played)} / ${format(duration)}`}</div> */}
-        <div className = 'button player__button'>
+        {/* <div className = 'button player__button'>
           <FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } />
         </div>
         <div className = 'button player__button' onClick = { _onClickFullscreen }>
           <FontAwesomeIcon className = 'button__icon' icon = { faDesktop } />
-        </div>
+        </div> */}
       </div>
     </>
   );
