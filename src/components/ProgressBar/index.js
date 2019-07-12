@@ -1,6 +1,10 @@
 // Core
 import React from 'react';
 import useStoreon from 'storeon/react';
+
+// Styles
+import Styles from './style.module.css';
+
 export const ProgressBar = (props) => {
   const { dispatch, playerState } = useStoreon(
     'player',
@@ -23,7 +27,7 @@ export const ProgressBar = (props) => {
   };
 
   return (
-    <div className = 'player__progress'>
+    <div className = {Styles.progressBar}>
       <input
         className = 'player__current'
         max = { 1 }

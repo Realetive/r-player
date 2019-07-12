@@ -46,7 +46,7 @@ export const PlayerFrame = (props) => {
   return (
     <>
       <div className = 'player__menu player__menu_direction_row'>
-        <div className = 'button player__button' onClick = { _toggleMuted }>
+        {/* <div className = 'button player__button' onClick = { _toggleMuted }>
           <FontAwesomeIcon
             className = 'button__icon'
             icon = { muted ? faVolumeMute : faVolumeUp }
@@ -62,7 +62,7 @@ export const PlayerFrame = (props) => {
             onChange = { _setVolume }
           />
         </div>
-        <div className = 'timing'>{`${format(duration * played)} / ${format(duration)}`}</div>
+        <div className = 'timing'>{`${format(duration * played)} / ${format(duration)}`}</div> */}
         <div className = 'button player__button'>
           <FontAwesomeIcon className = 'button__icon' icon = { faClosedCaptioning } />
         </div>

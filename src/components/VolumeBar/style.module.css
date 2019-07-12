@@ -1,0 +1,5 @@
+.volumeBar {
+  display: flex;
+  background-color: var(--mainBackgroundColor);
+  flex-direction: row;
+}

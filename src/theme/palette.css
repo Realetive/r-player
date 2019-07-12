@@ -1,0 +1,12 @@
+:root {
+    /* HEX */
+    --paletteColor1: #000;
+   
+    /* RGBA */
+    --mainBackgroundColor: rgba(255, 255, 255, 0.12549);
+    --rgbaColor2: rgba(0, 0, 0, 0.2);
+
+    /* Gradients */
+    --gradient1: linear-gradient(var(--paletteColor21), var(--paletteColor17));
+    --gradient2: linear-gradient(var(--paletteColor16), var(--paletteColor17));
+}

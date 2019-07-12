@@ -6,7 +6,9 @@ import { VideoPlayer } from './VideoPlayer';
 // GlobalState
 import { store } from './init/store';
 
+// Styles
 import './App.css';
+import './theme/init.css';
 
 const urlParams = new URLSearchParams(window.location.search);
 const videoId = urlParams.get('id');
