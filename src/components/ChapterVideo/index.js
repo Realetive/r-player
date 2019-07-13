@@ -22,7 +22,7 @@ export const ChapterVideo = () => {
     };
 
     return data.chapter.map((chapter, index) => (
-      <li className = 'collapse__chapter' data-time = { chapter.offset } key = { index }>
+      <li className = { Styles.chapterItem } data-time = { chapter.offset } key = { index }>
         <div className = { Styles.chapterHeader }>
           <div className = { Styles.chapterOpen }>
             <FontAwesomeIcon icon = { faChevronDown } />
