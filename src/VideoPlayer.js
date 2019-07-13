@@ -80,6 +80,7 @@ export const VideoPlayer = () => {
 
   const ref = (data) => {
     _setPlayer(data);
+    
   };
 
   useEffect(() => {
@@ -102,7 +103,10 @@ export const VideoPlayer = () => {
   if (videoData === null) {
     return null;
   }
+  if (player) {
 
+    console.log('player', player.getInternalPlayer());
+  }
   const { data, width, height } = videoData;
 
   return (
@@ -117,7 +121,10 @@ export const VideoPlayer = () => {
                 <ReactPlayer
                   config = { {
                     youtube: {
-                      playerVars: { controls: 0 },
+                      playerVars: {
+                        controls: 0,
+                        showinfo: 1,
+                      },
                     },
                   } }
                   height = { height }

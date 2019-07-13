@@ -1,0 +1,6 @@
+.headerButtons{
+  display: flex;
+  background-color: var(--mainBackgroundColor);
+ flex-direction: row;
+ width: 340px;
+}
