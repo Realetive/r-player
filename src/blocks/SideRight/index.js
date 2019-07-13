@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Styles
 // import styles from './style.module.css';
 
+// Copmonents
+import { ColumnRight } from '../../components/ColumnRight';
+
 export const SideRight = (props) => {
 
   return (
@@ -30,14 +33,7 @@ export const SideRight = (props) => {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dignissimos, voluptatum! Aspernatur obcaecati nihil maxime! Nostrum, impedit. Qui at ea eligendi incidunt impedit recusandae, ipsam, saepe veniam consequatur, voluptatibus dolore!</p>
           </div>
         </div>
-        <div className = 'player__menu player__menu_direction_column'>
-          <div className = 'player__menu-area'>
-            <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsUp } /></div>
-          </div>
-          <div className = 'player__menu-area'>
-            <div className = 'button button_height_available player__button'><FontAwesomeIcon className = 'button__icon' icon = { faThumbsDown } /></div>
-          </div>
-        </div>
+        <ColumnRight />
       </div>
     </>
   );
