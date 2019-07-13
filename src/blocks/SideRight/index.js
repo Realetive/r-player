@@ -1,10 +1,5 @@
 // Core
 import React from 'react';
-import {
-  faThumbsUp,
-  faThumbsDown
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Styles
 // import styles from './style.module.css';

@@ -1,6 +1,6 @@
 // Core
-import React, { useState, useEffect, useRef } from 'react';
-import useStoreon from 'storeon/react';
+import React from 'react';
+// import useStoreon from 'storeon/react';
 
 
 // Styles

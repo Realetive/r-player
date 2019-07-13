@@ -1,6 +1,6 @@
 // Core
 import React from 'react';
-import useStoreon from 'storeon/react';
+// import useStoreon from 'storeon/react';
 
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

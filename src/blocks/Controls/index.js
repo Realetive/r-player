@@ -1,6 +1,6 @@
 // Core
 import React from 'react';
-import useStoreon from 'storeon/react';
+// import useStoreon from 'storeon/react';
 
 // Components
 import { ControlBar } from '../../components/ControlBar';
