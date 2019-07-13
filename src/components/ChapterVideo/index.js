@@ -7,7 +7,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Styles
-// import Styles from './style.module.css';
+import Styles from './style.module.css';
 
 export const ChapterVideo = () => {
   const { videoData } = useStoreon('videoData');
@@ -23,11 +23,11 @@ export const ChapterVideo = () => {
 
     return data.chapter.map((chapter, index) => (
       <li className = 'collapse__chapter' data-time = { chapter.offset } key = { index }>
-        <div className = 'collapse__header'>
-          <div className = 'collapse__open'>
+        <div className = { Styles.chapterHeader }>
+          <div className = { Styles.chapterOpen }>
             <FontAwesomeIcon icon = { faChevronDown } />
           </div>
-          <div className = 'collapse__heading' data-time = { chapter.offset }>
+          <div className = { Styles.chapterHeading } data-time = { chapter.offset }>
             {chapter.title}
           </div>
         </div>
@@ -36,12 +36,11 @@ export const ChapterVideo = () => {
           dangerouslySetInnerHTML = { getMarkdownText(chapter.content) }
         />
         <br />
-        <div className = 'collapse__footer'>
+        <div>
           <div
-            className = 'button button_width_available collapse__jump'
-            style = { { border: '1px solid #000' } }
+            className = { `button ${Styles.chapterButton}` }
             onClick = { () => this.goTo(chapter.offset) }>
-            <span className = 'button__text' style = { { color: '#000' } }>
+            <span className = 'button__text' >
               Перейти к разделу
             </span>
           </div>
@@ -53,9 +52,7 @@ export const ChapterVideo = () => {
 
   return (
     <>
-      <div className = 'player__side-content'>
-        <ul className = 'collapse'>{_renderChapter()}</ul>
-      </div>
+      <ul className = { Styles.chapter }>{_renderChapter()}</ul>
     </>
   );
 };

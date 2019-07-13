@@ -2,7 +2,6 @@
 import React from 'react';
 // import useStoreon from 'storeon/react';
 
-
 // Styles
 // import Styles from './style.module.css';
 
@@ -10,7 +9,7 @@ import React from 'react';
 import { ChapterVideo } from '../ChapterVideo';
 
 export const ContentLeft = () => {
-  
+
 
   return (
     <>
@@ -29,7 +28,10 @@ export const ContentLeft = () => {
             </div>
           </div>
         </div>
-        <ChapterVideo />
+        <div className = 'player__side-content'>
+
+          <ChapterVideo />
+        </div>
       </div>
     </>
   );

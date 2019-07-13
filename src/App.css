@@ -100,20 +100,20 @@ textarea {
   background-color: rgba(255, 255, 255, 0.18824);
 } */
 
-.button__text {
+/* .button__text {
   display: inline-block;
   font-size: 16px;
   line-height: inherit;
-  /* padding: 15px 16px; */
+  padding: 15px 16px;
   box-sizing: border-box;
-}
+} */
 
 
 
-.button_width_available {
+/* .button_width_available {
   display: block;
   width: 100%;
-}
+} */
 
 .button_height_available {
   height: 100%;
@@ -232,30 +232,30 @@ textarea {
   width: 100%;
 }
 
-.collapse {
+/* .collapse {
   list-style: none;
   padding: 0;
   margin: 0;
-}
+} */
 
-.collapse__header {
+/* .collapse__header {
   background-color: #333;
   color: #fff;
   padding: 5px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-}
+} */
 
-.collapse__heading {
+/* .collapse__heading {
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
-}
+} */
 
-.collapse__open {
+/* .collapse__open {
   display: flex;
   align-items: center;
   align-content: center;
@@ -263,7 +263,7 @@ textarea {
   text-align: center;
   width: 36px;
   margin-right: 5px;
-}
+} */
 
 .collapse__chapter_state_active {
   background-color: #ccc;

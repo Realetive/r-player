@@ -1,6 +1,8 @@
 :root {
     /* HEX */
     --buttonColor: #fff;
+    --borderColor: #000;
+    --chapterHeaderBackground: #333;
    
     /* RGBA */
     --mainBackgroundColor: rgba(255, 255, 255, 0.12549);
