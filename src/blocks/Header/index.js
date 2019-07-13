@@ -1,12 +1,5 @@
 // Core
-import React, { useState, useEffect } from 'react';
-import useStoreon from 'storeon/react';
-import {
-  faShare,
-  faBookmark,
-  faCog
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 // Components
 import { Share } from '../../components/Share';
@@ -16,23 +9,8 @@ import { Config } from '../../components/Config';
 // Styles
 import Styles from './style.module.css';
 
-export const Header = () => {
-  const { videoData } = useStoreon('videoData');
-
-  const [data, _setData] = useState({});
-
-  useEffect(() => {
-
-    if (videoData) {
-
-      _setData(videoData.data);
-    }
-
-  }, [videoData]);
-
-  if (data === void 0) {
-    return null;
-  }
+export const Header = (props) => {
+  const { title, author } = props.data;
 
   return (
     <>
@@ -41,8 +19,8 @@ export const Header = () => {
         <div className = 'player__userpic' />
 
         <div className = { Styles.heading }>
-          <div className = { Styles.name }>{ data.title }</div>
-          <div className = { Styles.author }>{ data.author }</div>
+          <div className = { Styles.name }>{ title }</div>
+          <div className = { Styles.author }>{ author }</div>
         </div>
         <div className = { Styles.headerButtons }>
           <Share />

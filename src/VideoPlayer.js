@@ -80,7 +80,7 @@ export const VideoPlayer = () => {
 
   const ref = (data) => {
     _setPlayer(data);
-    
+
   };
 
   useEffect(() => {
@@ -103,17 +103,17 @@ export const VideoPlayer = () => {
   if (videoData === null) {
     return null;
   }
-  if (player) {
+  // if (player) {
 
-    console.log('player', player.getInternalPlayer());
-  }
+  //   console.log('player', player.getInternalPlayer());
+  // }
   const { data, width, height } = videoData;
 
   return (
     <div>
       <div data-vjs-player>
         <div className = 'player'>
-          <Header />
+          <Header data = { data } />
           <div className = 'player__main'>
             <SideLeft />
             <div className = 'player__frame'>
