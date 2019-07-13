@@ -36,12 +36,13 @@ export const Header = () => {
 
   return (
     <>
-      <div className = 'player__header'>
+      <div className = { Styles.header }>
         <div className = 'player__logo' />
         <div className = 'player__userpic' />
-        <div className = 'player__heading'>
-          <div className = 'player__name'>{ data.title }</div>
-          <div className = 'player__author'>{ data.author }</div>
+
+        <div className = { Styles.heading }>
+          <div className = { Styles.name }>{ data.title }</div>
+          <div className = { Styles.author }>{ data.author }</div>
         </div>
         <div className = { Styles.headerButtons }>
           <Share />

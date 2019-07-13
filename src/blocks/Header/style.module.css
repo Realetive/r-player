@@ -1,3 +1,23 @@
+.header{
+    display: flex;
+    flex-direction: row;
+}
+.heading{
+  flex: 1;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.name, .author {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+  }
+
 .headerButtons{
   display: flex;
   background-color: var(--mainBackgroundColor);
