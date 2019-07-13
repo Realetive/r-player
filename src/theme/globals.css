@@ -33,13 +33,4 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
-:global(.button) {
-    color: #fff;
-    text-align: center;
-    line-height: 30px;
-  }
-  .button {
-    color: #fff;
-    text-align: center;
-    line-height: 30px;
-  }
+  

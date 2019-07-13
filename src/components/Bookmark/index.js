@@ -13,8 +13,7 @@ export const Bookmark = () => {
   return (
     <>
       <div className = { Styles.bookmark }>
-        {/* <div className = 'button player__button'> */}
-        <div className = { Styles.button }>
+        <div className = 'button player__button'>
           <FontAwesomeIcon className = 'button__icon' icon = { faBookmark } />
         </div>
       </div>

@@ -108,15 +108,17 @@ textarea {
   box-sizing: border-box;
 }
 
-.button__icon {
+/* .button__icon {
   font-size: 20px;
   line-height: inherit;
   padding: 15px 16px;
   box-sizing: border-box;
   width: var(--button-size) !important;
   height: var(--button-size) !important;
-  /* float: left; */
-}
+  float: left;
+  
+} */
+
 
 .button_width_available {
   display: block;
@@ -129,9 +131,9 @@ textarea {
   align-items: center;
 }
 
-.player__button {
+/* .player__button {
   display: flex;
-}
+} */
 
 .player__side {
   width: 340px;
