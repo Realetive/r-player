@@ -9,13 +9,13 @@ import React from 'react';
 import { ColumnLeft } from '../../components/ColumnLeft';
 import { ContentLeft } from '../../components/ContentLeft';
 
-export const SideLeft = () => {
+export const SideLeft = ({ player }) => {
 
   return (
     <>
       <div className = 'player__side'>
         <ColumnLeft />
-        <ContentLeft />
+        <ContentLeft player = { player } />
       </div>
     </>
   );

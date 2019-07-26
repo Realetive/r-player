@@ -8,8 +8,7 @@ import React from 'react';
 // Components
 import { ChapterVideo } from '../ChapterVideo';
 
-export const ContentLeft = () => {
-
+export const ContentLeft = ({ player }) => {
 
   return (
     <>
@@ -30,7 +29,7 @@ export const ContentLeft = () => {
         </div>
         <div className = 'player__side-content'>
 
-          <ChapterVideo />
+          <ChapterVideo player = { player } />
         </div>
       </div>
     </>

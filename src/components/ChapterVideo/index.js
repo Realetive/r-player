@@ -9,9 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Styles
 import Styles from './style.module.css';
 
-export const ChapterVideo = () => {
-  const { videoData } = useStoreon('videoData');
+export const ChapterVideo = ({ player }) => {
+  const { dispatch, videoData, playerEvent } = useStoreon('videoData', 'playerEvent');
   const { data } = videoData;
+  const { play } = playerEvent;
 
   const _renderChapter = () => {
 
@@ -19,6 +20,11 @@ export const ChapterVideo = () => {
       const rawMarkup = marked(text, { sanitize: true, breaks: true });
 
       return { __html: rawMarkup };
+    };
+
+    const goTo = (seconds) => {
+      player.seekTo(seconds);
+      !play && dispatch('event/play', true);
     };
 
     return data.chapter.map((chapter, index) => (
@@ -33,13 +39,14 @@ export const ChapterVideo = () => {
         </div>
         <div
           className = 'collapse__content'
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML = { getMarkdownText(chapter.content) }
         />
         <br />
         <div>
           <div
             className = { `button ${Styles.chapterButton}` }
-            onClick = { () => this.goTo(chapter.offset) }>
+            onClick = { () => goTo(chapter.offset) }>
             <span className = 'button__text' >
               Перейти к разделу
             </span>

@@ -115,7 +115,7 @@ export const VideoPlayer = () => {
         <div className = 'player'>
           <Header data = { data } />
           <div className = 'player__main'>
-            <SideLeft />
+            <SideLeft player = { player } />
             <div className = 'player__frame'>
               <div className = 'player__content'>
                 <ReactPlayer
