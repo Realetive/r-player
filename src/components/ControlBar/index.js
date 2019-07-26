@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Styles
 import Styles from './style.module.css';
 
-export const ControlBar = (props) => {
+export const ControlBar = () => {
   const { dispatch, playerEvent } = useStoreon('playerEvent');
 
   const { play } = playerEvent;

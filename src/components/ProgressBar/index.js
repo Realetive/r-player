@@ -18,7 +18,7 @@ export const ProgressBar = (props) => {
     dispatch('playerState/played', parseFloat(e.target.value));
   };
 
-  const onSeekMouseDown = (e) => {
+  const onSeekMouseDown = () => {
     dispatch('event/seeking', true);
   };
 
@@ -28,7 +28,7 @@ export const ProgressBar = (props) => {
   };
 
   return (
-    <div className = {Styles.progressBar}>
+    <div className = { Styles.progressBar }>
       <input
         className = 'player__current'
         max = { 1 }
