@@ -7,7 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "autoprefixer": "^9.6.0",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "postcss-preset-env": "^6.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
