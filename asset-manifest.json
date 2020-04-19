@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.c163ab6e.chunk.css",
-    "main.js": "/static/js/main.1614f663.chunk.js",
-    "main.js.map": "/static/js/main.1614f663.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.b22c0a53.js",
-    "runtime-main.js.map": "/static/js/runtime-main.b22c0a53.js.map",
-    "static/css/2.e3795789.chunk.css": "/static/css/2.e3795789.chunk.css",
-    "static/js/2.22fccb1b.chunk.js": "/static/js/2.22fccb1b.chunk.js",
-    "static/js/2.22fccb1b.chunk.js.map": "/static/js/2.22fccb1b.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.1ac35f3d6d4c59a690a5193f4abd00de.js": "/precache-manifest.1ac35f3d6d4c59a690a5193f4abd00de.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.e3795789.chunk.css.map": "/static/css/2.e3795789.chunk.css.map",
-    "static/css/main.c163ab6e.chunk.css.map": "/static/css/main.c163ab6e.chunk.css.map",
-    "static/js/2.22fccb1b.chunk.js.LICENSE.txt": "/static/js/2.22fccb1b.chunk.js.LICENSE.txt"
+    "main.css": "/r-player/static/css/main.c163ab6e.chunk.css",
+    "main.js": "/r-player/static/js/main.ef7323c8.chunk.js",
+    "main.js.map": "/r-player/static/js/main.ef7323c8.chunk.js.map",
+    "runtime-main.js": "/r-player/static/js/runtime-main.022d0b5b.js",
+    "runtime-main.js.map": "/r-player/static/js/runtime-main.022d0b5b.js.map",
+    "static/css/2.e3795789.chunk.css": "/r-player/static/css/2.e3795789.chunk.css",
+    "static/js/2.22fccb1b.chunk.js": "/r-player/static/js/2.22fccb1b.chunk.js",
+    "static/js/2.22fccb1b.chunk.js.map": "/r-player/static/js/2.22fccb1b.chunk.js.map",
+    "index.html": "/r-player/index.html",
+    "precache-manifest.de7e8f9a4cb333995e37d8381f942574.js": "/r-player/precache-manifest.de7e8f9a4cb333995e37d8381f942574.js",
+    "service-worker.js": "/r-player/service-worker.js",
+    "static/css/2.e3795789.chunk.css.map": "/r-player/static/css/2.e3795789.chunk.css.map",
+    "static/css/main.c163ab6e.chunk.css.map": "/r-player/static/css/main.c163ab6e.chunk.css.map",
+    "static/js/2.22fccb1b.chunk.js.LICENSE.txt": "/r-player/static/js/2.22fccb1b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b22c0a53.js",
+    "static/js/runtime-main.022d0b5b.js",
     "static/css/2.e3795789.chunk.css",
     "static/js/2.22fccb1b.chunk.js",
     "static/css/main.c163ab6e.chunk.css",
-    "static/js/main.1614f663.chunk.js"
+    "static/js/main.ef7323c8.chunk.js"
   ]
 }
